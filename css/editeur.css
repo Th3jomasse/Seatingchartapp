@@ -1,0 +1,349 @@
+/* ============================================================================
+   Éditeur de plan de salle (outil de l'organisateur)
+   Réutilise les variables définies dans css/style.css (--fond, --carte,
+   --encre, --accent, --ligne, etc.) pour garder la même esthétique que
+   l'application des invités.
+   ============================================================================ */
+
+.editeur-corps-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: 2rem;
+}
+
+/* ------------------------------------------------------------------ En-tête */
+
+.editeur-entete {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  text-align: center;
+  padding: 0.9rem 1rem 1rem;
+}
+
+.editeur-soustitre {
+  color: var(--encre-douce);
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
+}
+
+.editeur-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.editeur-bouton {
+  font-family: var(--police-texte);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--ligne);
+  background: var(--carte);
+  color: var(--encre);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.editeur-bouton:hover { background: var(--survol); }
+.editeur-bouton:active { transform: scale(0.97); }
+
+.editeur-bouton-principal {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.editeur-bouton-principal:hover { background: var(--accent-fonce); border-color: var(--accent-fonce); }
+
+@media (prefers-color-scheme: dark) {
+  .editeur-bouton-principal { color: #201e1b; }
+}
+
+.editeur-bouton-secondaire { color: var(--accent-fonce); }
+
+.editeur-bouton-danger {
+  border-color: #b3564a;
+  color: #b3564a;
+}
+
+.editeur-bouton-danger:hover { background: rgba(179, 86, 74, 0.1); }
+
+/* ------------------------------------------------------------- Avertissement */
+
+.editeur-avertissement {
+  max-width: 900px;
+  margin: 0.85rem auto;
+  padding: 0.7rem 1rem;
+  background: var(--repere-fond);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  color: var(--encre-douce);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.editeur-avertissement code {
+  font-family: monospace;
+  background: var(--fond);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------------- Mise en page */
+
+.editeur-principal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 880px) {
+  .editeur-principal {
+    grid-template-columns: 1fr;
+  }
+}
+
+.editeur-zone-plan {
+  position: sticky;
+  top: 0.5rem;
+}
+
+@media (max-width: 880px) {
+  .editeur-zone-plan { position: static; }
+}
+
+.editeur-compteurs {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--encre-douce);
+}
+
+.editeur-compteur strong {
+  color: var(--accent-fonce);
+  font-family: var(--police-titre);
+  font-size: 1.2rem;
+  margin-right: 0.3rem;
+}
+
+.editeur-astuce {
+  text-align: center;
+  color: var(--encre-douce);
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+}
+
+/* ------------------------------------------------------------------------ Plan */
+
+.editeur-plan-conteneur {
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 0.75rem;
+}
+
+.editeur-plan-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none; /* on gère nous-mêmes le glisser (tables/repères) */
+}
+
+.editeur-repere-forme {
+  fill: var(--repere-fond);
+  stroke: var(--ligne);
+  stroke-width: 0.4;
+}
+
+.editeur-repere {
+  cursor: grab;
+}
+
+.editeur-repere-texte {
+  font-family: var(--police-texte);
+  font-size: 2.6px;
+  fill: var(--encre-douce);
+  text-anchor: middle;
+  dominant-baseline: central;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.editeur-table {
+  cursor: grab;
+}
+
+.editeur-table-forme {
+  fill: var(--table-fond);
+  stroke: var(--sauge);
+  stroke-width: 0.7;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.editeur-table:hover .editeur-table-forme { fill: var(--survol); }
+
+.editeur-table-texte {
+  font-family: var(--police-texte);
+  font-size: 4px;
+  font-weight: 500;
+  fill: var(--encre);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+/* Élément sélectionné (table ou repère) */
+.editeur-repere-forme.selectionne,
+.editeur-table-forme.selectionne {
+  fill: var(--surlignage);
+  stroke: var(--accent-fonce);
+  stroke-width: 1;
+}
+
+/* Élément en cours de glisser */
+.editeur-repere.glisse,
+.editeur-table.glisse {
+  cursor: grabbing;
+  opacity: 0.85;
+}
+
+.editeur-repere.glisse .editeur-repere-forme,
+.editeur-table.glisse .editeur-table-forme {
+  stroke-width: 1.1;
+}
+
+/* ------------------------------------------------------------------------ Panneau */
+
+.editeur-panneau {
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1.1rem;
+  min-height: 200px;
+}
+
+.editeur-panneau-vide {
+  color: var(--encre-douce);
+  font-size: 0.92rem;
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.editeur-panneau-titre {
+  font-family: var(--police-titre);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  color: var(--encre);
+}
+
+.champ-groupe {
+  margin-bottom: 0.9rem;
+}
+
+.champ-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--encre-douce);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.champ-input,
+.champ-select,
+.champ-textarea {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  font-family: var(--police-texte);
+  font-size: 0.95rem;
+  color: var(--encre);
+  background: var(--fond);
+  border: 1.5px solid var(--ligne);
+  border-radius: 8px;
+  outline: none;
+}
+
+.champ-input:focus,
+.champ-select:focus,
+.champ-textarea:focus {
+  border-color: var(--accent);
+}
+
+.champ-textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.5;
+  font-family: var(--police-texte);
+}
+
+.champ-ligne-double {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.champ-ligne-double .champ-groupe { flex: 1; }
+
+.editeur-panneau-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--ligne);
+}
+
+/* --------------------------------------------------------------- Zone export */
+
+.editeur-export {
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+  padding: 0 1rem;
+}
+
+.editeur-export-entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.editeur-export-entete h2 {
+  font-family: var(--police-titre);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.editeur-export-note {
+  color: var(--encre-douce);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.editeur-export-texte {
+  width: 100%;
+  height: 320px;
+  font-family: "Menlo", "Consolas", monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--encre);
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1rem;
+  resize: vertical;
+}

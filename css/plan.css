@@ -62,6 +62,18 @@
   font-size: 0.95rem;
 }
 
+.recherche-suggestion-entete {
+  padding: 0.55rem 1.1rem 0.3rem;
+  background: var(--carte);
+  color: var(--encre-douce);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--ligne);
+}
+
+.recherche-item-suggestion { border-left: 3px solid var(--accent); }
+
 /* ---------------------------------------------------- Résultat / détail table */
 
 .detail-table { margin-top: 1rem; }
@@ -121,18 +133,107 @@
 
 /* ----------------------------------------------------------- Plan de salle */
 
+.plan-enveloppe { margin-bottom: 0.5rem; }
+
 .plan-conteneur {
+  position: relative;
   background: var(--carte);
   border: 1px solid var(--ligne);
   border-radius: var(--rayon);
   box-shadow: var(--ombre);
   padding: 0.75rem;
+  overflow: hidden;
+  touch-action: none; /* empêche le pincement/défilement du navigateur : on gère le zoom nous-mêmes */
+  cursor: grab;
 }
+
+.plan-conteneur--glisse { cursor: grabbing; }
 
 .plan-svg {
   display: block;
   width: 100%;
   height: auto;
+  touch-action: none;
+  user-select: none;
+}
+
+/* Boutons de zoom / réinitialisation superposés au plan */
+.plan-controles {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  touch-action: manipulation;
+}
+
+.plan-bouton {
+  width: 2.1rem;
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--carte);
+  color: var(--encre);
+  border: 1px solid var(--ligne);
+  border-radius: 50%;
+  box-shadow: var(--ombre);
+  font-family: var(--police-texte);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.plan-bouton:hover { background: var(--survol); }
+.plan-bouton:active { transform: scale(0.94); }
+
+.plan-bouton-reset { font-size: 1rem; }
+
+/* Légende discrète sous le plan */
+.plan-legende {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 1.1rem;
+  margin-top: 0.65rem;
+  font-size: 0.78rem;
+  color: var(--encre-douce);
+}
+
+.plan-legende-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.plan-legende-puce {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
+}
+
+.plan-legende-puce-honneur {
+  color: var(--accent-fonce);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.plan-legende-puce-table {
+  background: var(--table-fond);
+  border: 1.5px solid var(--sauge);
+  border-radius: 50%;
+}
+
+.plan-legende-puce-repere {
+  background: var(--repere-fond);
+  border: 1px solid var(--ligne);
+  border-radius: 2px;
 }
 
 .plan-repere {
@@ -174,4 +275,14 @@
   text-anchor: middle;
   dominant-baseline: central;
   pointer-events: none;
+}
+
+/* Chaises décoratives autour des tables */
+.plan-chaises { pointer-events: none; }
+
+.plan-chaise {
+  fill: var(--fond);
+  stroke: var(--sauge);
+  stroke-width: 0.35;
+  opacity: 0.85;
 }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Double anneau de mariage stylisé">
+  <!-- Icône normale : fond ivoire circulaire, double anneau de mariage en or -->
+  <circle cx="50" cy="50" r="50" fill="#faf7f2"/>
+  <g fill="none" stroke="#8a7a4f" stroke-width="7">
+    <circle cx="37" cy="55" r="17"/>
+    <circle cx="63" cy="55" r="17"/>
+  </g>
+</svg>

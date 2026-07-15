@@ -79,14 +79,10 @@
 
     function pad(n) { return String(n).padStart(2, "0"); }
 
-    function maj() {
-      // Le rendu de page vide contenu.innerHTML à chaque navigation : dès que
-      // cette section n'est plus attachée, on arrête l'intervalle.
-      if (!section.isConnected) {
-        clearInterval(intervalId);
-        return;
-      }
-
+    // Calcule et affiche l'état courant. Ne dépend pas de la présence dans le
+    // DOM : utilisée pour le premier affichage (avant l'ajout à la page) et
+    // pour chaque battement de l'intervalle.
+    function calculerEtAfficher() {
       const maintenant = Date.now();
 
       if (maintenant < cible.getTime()) {
@@ -106,8 +102,19 @@
       }
     }
 
-    const intervalId = setInterval(maj, 1000);
-    maj();
+    // Battement périodique : ne fait rien (et coupe l'intervalle) dès que la
+    // section n'est plus attachée au DOM — le rendu de page vide
+    // contenu.innerHTML à chaque navigation, sans jamais rappeler ce module.
+    function tic() {
+      if (!section.isConnected) {
+        clearInterval(intervalId);
+        return;
+      }
+      calculerEtAfficher();
+    }
+
+    const intervalId = setInterval(tic, 1000);
+    calculerEtAfficher();
     return section;
   }
 

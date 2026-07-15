@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Éditeur de plan de salle</title>
+  <meta name="description" content="Outil de l'organisateur pour modifier le plan de salle (tables et repères).">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#8a7a4f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/editeur.css">
+</head>
+<body class="editeur-corps-page">
+
+  <!-- En-tête de l'éditeur, avec les actions principales -->
+  <header class="entete editeur-entete">
+    <h1 class="entete-titre">Éditeur de plan de salle</h1>
+    <p class="editeur-soustitre">Réservé à l'organisateur — cette page n'apparaît pas dans l'application des invités.</p>
+    <div class="editeur-actions">
+      <button type="button" id="bouton-ajouter-table" class="editeur-bouton">+ Table</button>
+      <button type="button" id="bouton-ajouter-repere" class="editeur-bouton">+ Repère</button>
+      <button type="button" id="bouton-copier" class="editeur-bouton editeur-bouton-secondaire">Copier le code</button>
+      <button type="button" id="bouton-exporter" class="editeur-bouton editeur-bouton-principal">⬇ Exporter config.js</button>
+    </div>
+  </header>
+
+  <p class="editeur-avertissement">
+    ⚠ Vos changements ne sont pas sauvegardés automatiquement — exportez le fichier quand vous avez terminé,
+    puis remplacez <code>js/config.js</code> par le fichier téléchargé.
+  </p>
+
+  <main class="editeur-principal">
+
+    <!-- Zone du plan -->
+    <section class="editeur-zone-plan">
+      <div class="editeur-compteurs">
+        <span class="editeur-compteur"><strong id="compte-tables">0</strong> tables</span>
+        <span class="editeur-compteur"><strong id="compte-invites">0</strong> invités</span>
+      </div>
+      <div class="editeur-plan-conteneur" id="plan-conteneur">
+        <svg id="plan-svg" class="editeur-plan-svg" viewBox="0 0 100 120"></svg>
+      </div>
+      <p class="editeur-astuce">Glissez une table ou un repère pour le déplacer. Cliquez pour le sélectionner et le modifier.</p>
+    </section>
+
+    <!-- Panneau d'édition -->
+    <aside class="editeur-panneau" id="panneau" aria-live="polite">
+      <p class="editeur-panneau-vide">Sélectionnez une table ou un repère sur le plan pour le modifier ici.</p>
+    </aside>
+
+  </main>
+
+  <!-- Zone d'export : affiche le code généré, permet de le copier ou de vérifier avant de remplacer config.js -->
+  <section class="editeur-export" id="zone-export" hidden>
+    <div class="editeur-export-entete">
+      <h2>Contenu de <code>js/config.js</code></h2>
+      <button type="button" id="bouton-fermer-export" class="editeur-bouton editeur-bouton-secondaire">Fermer</button>
+    </div>
+    <p class="editeur-export-note">Le téléchargement a été lancé automatiquement. Copiez-collez ce contenu dans <code>js/config.js</code> si le téléchargement ne fonctionne pas.</p>
+    <textarea id="texte-export" class="editeur-export-texte" readonly spellcheck="false"></textarea>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/editeur.js"></script>
+</body>
+</html>

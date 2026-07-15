@@ -1,0 +1,25 @@
+{
+  "name": "Trouvez votre place",
+  "short_name": "Ma place",
+  "description": "Plan de salle, menu et partage de photos pour notre événement.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf7f2",
+  "theme_color": "#8a7a4f",
+  "icons": [
+    {
+      "src": "icons/icone.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icone-maskable.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}

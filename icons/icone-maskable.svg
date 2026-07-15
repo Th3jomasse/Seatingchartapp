@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Double anneau de mariage stylisé">
+  <!-- Icône maskable : fond ivoire plein carré (déborde jusqu'aux bords), -->
+  <!-- motif centré dans la zone de sécurité (marge de 20 % de chaque côté) -->
+  <rect x="0" y="0" width="100" height="100" fill="#faf7f2"/>
+  <g fill="none" stroke="#8a7a4f" stroke-width="5">
+    <circle cx="38" cy="52" r="14"/>
+    <circle cx="62" cy="52" r="14"/>
+  </g>
+</svg>
