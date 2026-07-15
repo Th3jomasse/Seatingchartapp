@@ -1,6 +1,7 @@
 /* ============================================================================
-   Style de l'application « Trouvez votre place »
-   Palette élégante : ivoire, or doux, vert sauge foncé
+   Style de base (variables, en-tête, navigation, éléments partagés)
+   Palette claire : ivoire, or doux, vert sauge — avec mode sombre automatique.
+   Les styles propres à chaque page sont dans css/accueil.css, plan.css, etc.
    ============================================================================ */
 
 :root {
@@ -13,10 +14,36 @@
   --sauge: #5c6b5a;
   --ligne: #e8e2d6;
   --surlignage: #c9a84c;
+  --survol: #f5f0e6;
+  --repere-fond: #f0ebe0;
+  --table-fond: #ffffff;
+  --entete-fond: rgba(250, 247, 242, 0.92);
+  --nav-fond: rgba(255, 255, 255, 0.95);
   --ombre: 0 2px 12px rgba(60, 58, 54, 0.08);
   --rayon: 14px;
   --police-titre: "Cormorant Garamond", Georgia, serif;
   --police-texte: "Jost", "Segoe UI", sans-serif;
+}
+
+/* Mode sombre automatique (selon le réglage du téléphone) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #201e1b;
+    --carte: #2a2723;
+    --encre: #e8e3d9;
+    --encre-douce: #a39c8e;
+    --accent: #b9a468;
+    --accent-fonce: #cdbb85;
+    --sauge: #8ba087;
+    --ligne: #3a362f;
+    --surlignage: #c9a84c;
+    --survol: #35312a;
+    --repere-fond: #35312a;
+    --table-fond: #2f2b26;
+    --entete-fond: rgba(32, 30, 27, 0.92);
+    --nav-fond: rgba(42, 39, 35, 0.95);
+    --ombre: 0 2px 12px rgba(0, 0, 0, 0.35);
+  }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,7 +66,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(250, 247, 242, 0.92);
+  background: var(--entete-fond);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--ligne);
   padding: 0.7rem 1rem;
@@ -97,289 +124,6 @@ body {
 
 .texte-centre { text-align: center; }
 
-/* ----------------------------------------------------------------- Accueil */
-
-.hero {
-  text-align: center;
-  padding: 2.5rem 0 1.5rem;
-}
-
-.hero-ornement {
-  color: var(--surlignage);
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero-titre {
-  font-family: var(--police-titre);
-  font-size: 2.7rem;
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--encre);
-}
-
-.hero-sous-titre {
-  font-style: italic;
-  font-family: var(--police-titre);
-  font-size: 1.25rem;
-  color: var(--accent);
-  margin-top: 0.4rem;
-}
-
-.hero-infos {
-  margin-top: 0.9rem;
-  color: var(--encre-douce);
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.raccourcis {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-}
-
-.raccourci {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 1.1rem 0.5rem;
-  background: var(--carte);
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon);
-  box-shadow: var(--ombre);
-  font-family: var(--police-texte);
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--encre);
-  cursor: pointer;
-  transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-.raccourci:active { transform: scale(0.97); }
-.raccourci:hover { border-color: var(--accent); }
-
-.raccourci-icone { font-size: 1.7rem; }
-
-/* --------------------------------------------------------------- Recherche */
-
-.recherche { position: relative; }
-
-.recherche-champ {
-  width: 100%;
-  padding: 0.9rem 1.1rem;
-  font-family: var(--police-texte);
-  font-size: 1.05rem;
-  color: var(--encre);
-  background: var(--carte);
-  border: 1.5px solid var(--ligne);
-  border-radius: 999px;
-  outline: none;
-  box-shadow: var(--ombre);
-}
-
-.recherche-champ:focus { border-color: var(--accent); }
-
-.recherche-resultats {
-  margin-top: 0.5rem;
-  border-radius: var(--rayon);
-  overflow: hidden;
-}
-
-.recherche-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-  padding: 0.8rem 1.1rem;
-  background: var(--carte);
-  border: none;
-  border-bottom: 1px solid var(--ligne);
-  font-family: var(--police-texte);
-  font-size: 1rem;
-  text-align: left;
-  cursor: pointer;
-}
-
-.recherche-item:hover { background: #f5f0e6; }
-
-.recherche-nom { font-weight: 500; color: var(--encre); }
-
-.recherche-table {
-  font-size: 0.85rem;
-  color: var(--encre-douce);
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.recherche-vide {
-  padding: 0.9rem 1.1rem;
-  background: var(--carte);
-  color: var(--encre-douce);
-  font-size: 0.95rem;
-}
-
-/* ---------------------------------------------------- Résultat / détail table */
-
-.detail-table { margin-top: 1rem; }
-
-.carte-resultat { text-align: center; }
-
-.resultat-invite {
-  font-family: var(--police-titre);
-  font-size: 1.6rem;
-  font-weight: 600;
-}
-
-.resultat-phrase {
-  color: var(--encre-douce);
-  font-size: 0.9rem;
-  font-style: italic;
-}
-
-.resultat-table {
-  font-family: var(--police-titre);
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--accent-fonce);
-  margin: 0.3rem 0 0.8rem;
-}
-
-.resultat-avec {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--encre-douce);
-  margin-bottom: 0.4rem;
-}
-
-.resultat-liste {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.4rem;
-}
-
-.resultat-liste li {
-  padding: 0.25rem 0.8rem;
-  background: var(--fond);
-  border: 1px solid var(--ligne);
-  border-radius: 999px;
-  font-size: 0.92rem;
-}
-
-.resultat-liste li.moi {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-  font-weight: 500;
-}
-
-/* ----------------------------------------------------------- Plan de salle */
-
-.plan-conteneur {
-  background: var(--carte);
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon);
-  box-shadow: var(--ombre);
-  padding: 0.75rem;
-}
-
-.plan-svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.plan-repere {
-  fill: #f0ebe0;
-  stroke: var(--ligne);
-  stroke-width: 0.4;
-}
-
-.plan-repere-texte {
-  font-family: var(--police-texte);
-  font-size: 2.6px;
-  fill: var(--encre-douce);
-  text-anchor: middle;
-  dominant-baseline: central;
-  letter-spacing: 0.05em;
-}
-
-.plan-table { cursor: pointer; }
-
-.plan-table-forme {
-  fill: #fff;
-  stroke: var(--sauge);
-  stroke-width: 0.7;
-  transition: fill 0.2s ease, stroke 0.2s ease;
-}
-
-.plan-table:hover .plan-table-forme { fill: #eef1ec; }
-
-.plan-table-forme.surligne {
-  fill: var(--surlignage);
-  stroke: var(--accent-fonce);
-}
-
-.plan-table-numero {
-  font-family: var(--police-texte);
-  font-size: 4px;
-  font-weight: 500;
-  fill: var(--encre);
-  text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-
-/* -------------------------------------------------------------------- Menu */
-
-.carte-menu { text-align: center; }
-
-.menu-section {
-  font-family: var(--police-titre);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--accent-fonce);
-  margin-bottom: 0.6rem;
-}
-
-.menu-section::after {
-  content: "";
-  display: block;
-  width: 42px;
-  height: 1px;
-  background: var(--surlignage);
-  margin: 0.45rem auto 0;
-}
-
-.menu-plat { padding: 0.45rem 0; }
-
-.menu-plat-nom { font-size: 1.02rem; }
-
-.menu-plat-note {
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--encre-douce);
-}
-
-.menu-note {
-  text-align: center;
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--encre-douce);
-  margin-top: 0.5rem;
-}
-
-/* ------------------------------------------------------------------ Photos */
-
-.photos-icone { font-size: 2.6rem; margin-bottom: 0.4rem; }
-
 .bouton-principal {
   display: inline-block;
   margin-top: 1.1rem;
@@ -387,6 +131,9 @@ body {
   background: var(--accent);
   color: #fff;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--police-texte);
   font-weight: 500;
   font-size: 1.05rem;
   border-radius: 999px;
@@ -394,36 +141,12 @@ body {
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
-.bouton-principal:hover { background: var(--accent-fonce); }
+.bouton-principal:hover { background: var(--accent-fonce); color: #fff; }
 .bouton-principal:active { transform: scale(0.97); }
 
-.photos-motclic {
-  margin-top: 1rem;
-  font-family: var(--police-titre);
-  font-size: 1.3rem;
-  font-style: italic;
-  color: var(--accent-fonce);
-}
-
-/* ---------------------------------------------------------------- À propos */
-
-.apropos-paragraphe { margin-bottom: 0.9rem; }
-.apropos-paragraphe:last-child { margin-bottom: 0; }
-
-.horaire-ligne {
-  display: flex;
-  gap: 1rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px dashed var(--ligne);
-}
-
-.horaire-ligne:last-child { border-bottom: none; }
-
-.horaire-heure {
-  flex-shrink: 0;
-  width: 5.2rem;
-  font-weight: 500;
-  color: var(--accent-fonce);
+@media (prefers-color-scheme: dark) {
+  .bouton-principal { color: #201e1b; }
+  .bouton-principal:hover { color: #201e1b; }
 }
 
 /* -------------------------------------------------------- Navigation du bas */
@@ -436,7 +159,7 @@ body {
   z-index: 10;
   display: flex;
   justify-content: space-around;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--nav-fond);
   backdrop-filter: blur(8px);
   border-top: 1px solid var(--ligne);
   padding: 0.4rem 0.25rem calc(0.4rem + env(safe-area-inset-bottom));
@@ -466,10 +189,3 @@ body {
 }
 
 .nav-bouton.actif .nav-icone { transform: scale(1.1); }
-
-/* ------------------------------------------------------------ Grand écran */
-
-@media (min-width: 700px) {
-  .hero-titre { font-size: 3.4rem; }
-  .raccourcis { grid-template-columns: repeat(4, 1fr); }
-}

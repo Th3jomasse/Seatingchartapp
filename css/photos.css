@@ -1,0 +1,13 @@
+/* ============================================================================
+   Page : Photos
+   ============================================================================ */
+
+.photos-icone { font-size: 2.6rem; margin-bottom: 0.4rem; }
+
+.photos-motclic {
+  margin-top: 1rem;
+  font-family: var(--police-titre);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--accent-fonce);
+}

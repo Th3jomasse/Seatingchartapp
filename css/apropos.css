@@ -1,0 +1,22 @@
+/* ============================================================================
+   Page : Les mariés / À propos
+   ============================================================================ */
+
+.apropos-paragraphe { margin-bottom: 0.9rem; }
+.apropos-paragraphe:last-child { margin-bottom: 0; }
+
+.horaire-ligne {
+  display: flex;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--ligne);
+}
+
+.horaire-ligne:last-child { border-bottom: none; }
+
+.horaire-heure {
+  flex-shrink: 0;
+  width: 5.2rem;
+  font-weight: 500;
+  color: var(--accent-fonce);
+}

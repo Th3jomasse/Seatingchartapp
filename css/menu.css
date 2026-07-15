@@ -1,0 +1,40 @@
+/* ============================================================================
+   Page : Menu
+   ============================================================================ */
+
+.carte-menu { text-align: center; }
+
+.menu-section {
+  font-family: var(--police-titre);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent-fonce);
+  margin-bottom: 0.6rem;
+}
+
+.menu-section::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 1px;
+  background: var(--surlignage);
+  margin: 0.45rem auto 0;
+}
+
+.menu-plat { padding: 0.45rem 0; }
+
+.menu-plat-nom { font-size: 1.02rem; }
+
+.menu-plat-note {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--encre-douce);
+}
+
+.menu-note {
+  text-align: center;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--encre-douce);
+  margin-top: 0.5rem;
+}

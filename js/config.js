@@ -23,6 +23,10 @@ const CONFIG = {
     date: "Samedi 12 septembre 2026",
     lieu: "Domaine du Lac, Québec",
 
+    // Date/heure exacte au format ISO — utilisée pour le compte à rebours.
+    // Laisser vide "" pour cacher le compte à rebours.
+    dateISO: "2026-09-12T15:00:00-04:00",
+
     // Message de bienvenue sur la page d'accueil
     messageBienvenue:
       "Bienvenue! Merci de célébrer avec nous. " +
@@ -36,8 +40,29 @@ const CONFIG = {
     plan: true,      // Trouver ma place + plan de salle
     menu: true,      // Menu
     photos: true,    // Partage photo / photobooth
+    infos: true,     // Infos pratiques (adresse, stationnement, etc.)
     aPropos: true,   // Les mariés / À propos
     horaire: true,   // Déroulement de la journée (affiché sur la page À propos)
+  },
+
+  // --------------------------------------------------------------------------
+  // Infos pratiques — laisser un champ vide "" pour le cacher
+  // --------------------------------------------------------------------------
+  infos: {
+    adresse: "Domaine du Lac, 1234 chemin du Lac, Québec (QC) G1A 2B3",
+    googleMapsLien: "https://maps.google.com/?q=Domaine+du+Lac+Quebec",
+    stationnement: "Stationnement gratuit sur place, à droite de l'entrée principale.",
+    hebergement:
+      "Un bloc de chambres est réservé à l'Hôtel du Fleuve (10 min) — " +
+      "mentionnez « mariage Sophie et Mathieu » au 1 800 555-0199.",
+    codeVestimentaire: "Tenue de soirée (cocktail). La cérémonie a lieu à l'extérieur, prévoyez un lainage.",
+    contact: {
+      nom: "Julie (témoin)",
+      telephone: "418 555-0123",
+      courriel: "julie@example.com",
+    },
+    // Lien RSVP (formulaire Google, etc.) — laisser vide "" pour cacher le bouton
+    rsvpLien: "",
   },
 
   // --------------------------------------------------------------------------

@@ -1,0 +1,73 @@
+/* ============================================================================
+   Page : Accueil
+   ============================================================================ */
+
+.hero {
+  text-align: center;
+  padding: 2.5rem 0 1.5rem;
+}
+
+.hero-ornement {
+  color: var(--surlignage);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-titre {
+  font-family: var(--police-titre);
+  font-size: 2.7rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--encre);
+}
+
+.hero-sous-titre {
+  font-style: italic;
+  font-family: var(--police-titre);
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-top: 0.4rem;
+}
+
+.hero-infos {
+  margin-top: 0.9rem;
+  color: var(--encre-douce);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.raccourcis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.raccourci {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.1rem 0.5rem;
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--encre);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.raccourci:active { transform: scale(0.97); }
+.raccourci:hover { border-color: var(--accent); }
+
+.raccourci-icone { font-size: 1.7rem; }
+
+@media (min-width: 700px) {
+  .hero-titre { font-size: 3.4rem; }
+  .raccourcis { grid-template-columns: repeat(4, 1fr); }
+}

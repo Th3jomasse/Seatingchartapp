@@ -1,0 +1,177 @@
+/* ============================================================================
+   Page : Trouver ma place + plan de salle
+   ============================================================================ */
+
+/* --------------------------------------------------------------- Recherche */
+
+.recherche { position: relative; }
+
+.recherche-champ {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  font-family: var(--police-texte);
+  font-size: 1.05rem;
+  color: var(--encre);
+  background: var(--carte);
+  border: 1.5px solid var(--ligne);
+  border-radius: 999px;
+  outline: none;
+  box-shadow: var(--ombre);
+}
+
+.recherche-champ:focus { border-color: var(--accent); }
+
+.recherche-resultats {
+  margin-top: 0.5rem;
+  border-radius: var(--rayon);
+  overflow: hidden;
+}
+
+.recherche-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  background: var(--carte);
+  border: none;
+  border-bottom: 1px solid var(--ligne);
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  color: var(--encre);
+  text-align: left;
+  cursor: pointer;
+}
+
+.recherche-item:hover { background: var(--survol); }
+
+.recherche-nom { font-weight: 500; color: var(--encre); }
+
+.recherche-table {
+  font-size: 0.85rem;
+  color: var(--encre-douce);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.recherche-vide {
+  padding: 0.9rem 1.1rem;
+  background: var(--carte);
+  color: var(--encre-douce);
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------- Résultat / détail table */
+
+.detail-table { margin-top: 1rem; }
+
+.carte-resultat { text-align: center; }
+
+.resultat-invite {
+  font-family: var(--police-titre);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.resultat-phrase {
+  color: var(--encre-douce);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.resultat-table {
+  font-family: var(--police-titre);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent-fonce);
+  margin: 0.3rem 0 0.8rem;
+}
+
+.resultat-avec {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--encre-douce);
+  margin-bottom: 0.4rem;
+}
+
+.resultat-liste {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.resultat-liste li {
+  padding: 0.25rem 0.8rem;
+  background: var(--fond);
+  border: 1px solid var(--ligne);
+  border-radius: 999px;
+  font-size: 0.92rem;
+}
+
+.resultat-liste li.moi {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ----------------------------------------------------------- Plan de salle */
+
+.plan-conteneur {
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 0.75rem;
+}
+
+.plan-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plan-repere {
+  fill: var(--repere-fond);
+  stroke: var(--ligne);
+  stroke-width: 0.4;
+}
+
+.plan-repere-texte {
+  font-family: var(--police-texte);
+  font-size: 2.6px;
+  fill: var(--encre-douce);
+  text-anchor: middle;
+  dominant-baseline: central;
+  letter-spacing: 0.05em;
+}
+
+.plan-table { cursor: pointer; }
+
+.plan-table-forme {
+  fill: var(--table-fond);
+  stroke: var(--sauge);
+  stroke-width: 0.7;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.plan-table:hover .plan-table-forme { fill: var(--survol); }
+
+.plan-table-forme.surligne {
+  fill: var(--surlignage);
+  stroke: var(--accent-fonce);
+}
+
+.plan-table-numero {
+  font-family: var(--police-texte);
+  font-size: 4px;
+  font-weight: 500;
+  fill: var(--encre);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
