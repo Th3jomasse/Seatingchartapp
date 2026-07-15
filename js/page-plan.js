@@ -427,9 +427,12 @@
     function distanceEntre(p1, p2) { return Math.hypot(p2.x - p1.x, p2.y - p1.y); }
     function milieuEntre(p1, p2) { return { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 }; }
 
+    // Remarque : on ne capture le pointeur (setPointerCapture) qu'une fois le
+    // geste confirmé comme un glissement. Capturer trop tôt reciblerait aussi
+    // l'événement « click » vers le conteneur, empêchant un simple tapotement
+    // d'ouvrir les détails d'une table.
     conteneur.addEventListener("pointerdown", function (e) {
       if (e.target.closest && e.target.closest(".plan-controles")) return;
-      try { conteneur.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
       pointeurs.set(e.pointerId, { x: e.clientX, y: e.clientY });
       distanceParcourue = 0;
       gesteEstDeplacement = false;
@@ -437,7 +440,6 @@
       if (pointeurs.size === 1) {
         panDepart = { x: vb.x, y: vb.y, clientX: e.clientX, clientY: e.clientY };
         pinceDepart = null;
-        conteneur.classList.add("plan-conteneur--glisse");
       } else if (pointeurs.size === 2) {
         panDepart = null;
         const pts = Array.from(pointeurs.values());
@@ -446,6 +448,11 @@
           distance: distanceEntre(pts[0], pts[1]),
         };
         gesteEstDeplacement = true;
+        conteneur.classList.add("plan-conteneur--glisse");
+        // Un pincement à deux doigts est toujours un geste : capture immédiate.
+        pointeurs.forEach(function (_v, id) {
+          try { conteneur.setPointerCapture(id); } catch (err) { /* ignore */ }
+        });
       }
     });
 
@@ -457,7 +464,14 @@
         const dx = e.clientX - panDepart.clientX;
         const dy = e.clientY - panDepart.clientY;
         distanceParcourue = Math.hypot(dx, dy);
-        if (distanceParcourue > SEUIL_CLIC) gesteEstDeplacement = true;
+        if (distanceParcourue > SEUIL_CLIC && !gesteEstDeplacement) {
+          gesteEstDeplacement = true;
+          conteneur.classList.add("plan-conteneur--glisse");
+          // On capture seulement maintenant : le geste est confirmé comme un
+          // glissement, un simple tapotement pourra donc encore déclencher
+          // un clic natif normal sur la table.
+          try { conteneur.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+        }
         const rect = svg.getBoundingClientRect();
         if (rect.width > 0 && rect.height > 0) {
           const cible = {

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codes QR</title>
+  <meta name="description" content="Générez et imprimez les codes QR du site et de chaque invité.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#8a7a4f">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔳</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/qr.css">
+</head>
+<body>
+
+  <!-- Page réservée à l'organisateur : pas de lien dans la navigation invités -->
+  <header class="entete no-print">
+    <h1 class="entete-titre">Codes QR</h1>
+  </header>
+
+  <main class="contenu">
+    <section>
+      <h2 class="titre-page">Codes QR</h2>
+      <p class="sous-titre-page">
+        Générez le code QR du site et un code QR personnalisé pour chaque invité
+        (lien direct vers sa table), puis imprimez des cartons prêts à découper.
+      </p>
+
+      <!-- Adresse du site -->
+      <div class="carte no-print">
+        <h3 class="qr-soustitre">Adresse de votre site</h3>
+        <p class="qr-aide">
+          Adresse à laquelle vos invités accéderont au site une fois publié.
+          Modifiez-la si elle est incorrecte — tous les codes QR se mettent à jour automatiquement.
+        </p>
+        <input type="url" id="qr-url-base" class="qr-champ-url" placeholder="https://votre-site.example.com/" autocomplete="off">
+      </div>
+
+      <!-- QR du site -->
+      <div class="carte no-print">
+        <h3 class="qr-soustitre">QR du site</h3>
+        <div class="qr-site-contenu">
+          <canvas id="qr-canvas-site" class="qr-canvas"></canvas>
+          <div>
+            <p class="qr-aide" id="qr-site-url-affiche"></p>
+            <button type="button" class="bouton-principal" id="qr-telecharger-site">Télécharger PNG</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- QR par invité -->
+      <div class="qr-entete-invites no-print">
+        <h3 class="qr-soustitre" style="margin-bottom: 0;">QR personnalisés par invité</h3>
+        <button type="button" class="bouton-principal qr-bouton-imprimer" id="qr-imprimer">🖨 Imprimer les cartons</button>
+      </div>
+
+      <div class="qr-grille-invites" id="qr-grille-invites"></div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/qrcode.js"></script>
+  <script src="js/qr.js"></script>
+</body>
+</html>
