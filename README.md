@@ -1,43 +1,57 @@
 # Trouvez votre place 🪑
 
-Une application web pour vos invités — inspirée de *Please Find Your Seat*.
-Vos invités ouvrent un simple lien (ou scannent un code QR) sur leur téléphone et peuvent :
+Une application web pour vos invités — inspirée de *Please Find Your Seat*, mais en plus techno :
+là où l'app d'origine montre des images ou des PDF, ici tout est **interactif**.
+Vos invités ouvrent un simple lien (ou scannent un code QR) sur leur téléphone :
 
-- 🔍 **Trouver leur place** en tapant leur nom (recherche sans accents, avec suggestions)
-- 🗺️ **Voir le plan de salle** interactif (touchez une table pour voir qui y est assis)
-- 🍽️ **Consulter le menu** (cocktail, entrée, plat, dessert, bar, notes d'allergènes)
-- 📸 **Accéder au partage de photos / photobooth** via votre lien
-- 💍 **Lire une page sur les mariés** (ou sur l'entreprise) et le déroulement de la journée
+## Pour les invités
+
+- 🔍 **Trouver leur place** en tapant leur nom — recherche sans accents, suggestions,
+  et tolérance aux fautes de frappe (« emlie » trouve Émile)
+- 🗺️ **Plan de salle interactif** — zoom (boutons, molette, pincement à deux doigts),
+  déplacement au doigt, chaises dessinées autour des tables, légende ;
+  touchez une table pour voir qui y est assis
+- ⏳ **Compte à rebours** en direct jusqu'au grand jour, monogramme élégant
+- 🍽️ **Menu filtrable** — puces 🌱 Végétarien / 🌾 Sans gluten avec badges par plat
+- 📸 **Partage de photos / photobooth** — bouton vers votre album, copie du lien,
+  partage natif mobile, mot-clic
+- ℹ️ **Infos pratiques** — adresse + Google Maps, stationnement, hébergement,
+  code vestimentaire, contact (appel/courriel en un tap), RSVP optionnel
+- 💍 **Page sur les mariés** (ou sur l'entreprise) + déroulement de la journée
+- 📱 **PWA installable et hors ligne** — l'app continue de fonctionner même si le
+  réseau est faible dans la salle de réception
+- 🌙 **Mode sombre** automatique
+
+## Pour l'organisateur (vous)
+
+- 🛠️ **[`editeur.html`](editeur.html)** — éditeur visuel du plan de salle :
+  glissez-déposez vos tables et repères à la souris, éditez noms et invités,
+  puis **Exporter config.js** et remplacez le fichier. Fini l'édition de coordonnées à la main.
+- 🎟️ **[`qr.html`](qr.html)** — générateur de codes QR **sans aucun service externe**
+  (algorithme QR complet intégré) : QR du site, un QR personnalisé par invité
+  (lien profond `?invite=Nom` qui affiche directement sa place), téléchargement PNG,
+  et **impression de cartons** prête à l'emploi.
 
 Aucune installation pour les invités, aucun serveur, aucune base de données :
 c'est un site 100 % statique, hébergeable **gratuitement sur GitHub Pages**.
 
 ## Personnalisation
 
-**Tout se configure dans un seul fichier : [`js/config.js`](js/config.js).**
-
-Vous pouvez y modifier :
+**Tout se configure dans un seul fichier : [`js/config.js`](js/config.js)** — ou visuellement
+via `editeur.html` pour le plan de salle.
 
 | Section | Quoi |
 |---|---|
-| `event` | Type (`"mariage"` ou `"entreprise"`), titre, date, lieu, message de bienvenue |
+| `event` | Type (`"mariage"` ou `"entreprise"`), titre, date, lieu, `dateISO` (compte à rebours), message de bienvenue |
 | `pages` | Activer/désactiver chaque page (`true`/`false`) |
 | `salle` | Les tables (nom, forme `"ronde"`/`"rect"`, position `x`/`y` en %, invités) et les repères (scène, bar, piste de danse…) |
-| `menu` | Les sections du menu et leurs plats (avec notes : végétarien, sans gluten…) |
+| `menu` | Les sections du menu et leurs plats — les notes « végétarien », « sans gluten », « végane » deviennent badges et filtres automatiquement |
 | `photos` | Le lien vers votre album partagé / photobooth et le mot-clic |
+| `infos` | Adresse, lien Google Maps, stationnement, hébergement, code vestimentaire, contact, lien RSVP |
 | `aPropos` | Le texte sur les mariés (ou l'entreprise) |
 | `horaire` | Le déroulement de la journée |
 
-### Positionner les tables sur le plan
-
-Chaque table a une position `x` et `y` en **pourcentage** (0 à 100) :
-`x: 0` = gauche, `x: 100` = droite, `y: 0` = haut, `y: 100` = bas.
-Modifiez les valeurs, rechargez la page, et ajustez jusqu'à ce que le plan
-ressemble à votre salle.
-
 ## Tester localement
-
-Ouvrez simplement `index.html` dans un navigateur, ou lancez un petit serveur :
 
 ```bash
 python3 -m http.server 8000
@@ -48,18 +62,24 @@ python3 -m http.server 8000
 
 1. Poussez le code sur GitHub (branche `main`).
 2. Dans le dépôt : **Settings → Pages → Source : GitHub Actions**.
-3. Le workflow inclus (`.github/workflows/pages.yml`) publie le site automatiquement
-   à chaque poussée sur `main`.
+3. Le workflow inclus (`.github/workflows/pages.yml`) publie le site automatiquement.
 4. Votre site sera à `https://VOTRE-NOM.github.io/Seatingchartapp/`.
-
-> 💡 Générez ensuite un **code QR** pointant vers cette adresse (par exemple avec
-> un générateur gratuit en ligne) et placez-le sur les cartons à l'entrée de la salle.
+5. Ouvrez `https://…/qr.html` pour générer et imprimer vos codes QR.
 
 ## Technologie
 
-HTML, CSS et JavaScript purs — aucune dépendance, aucun outil de compilation.
+HTML, CSS et JavaScript purs — **zéro dépendance, zéro build, zéro service externe**.
 
-- `index.html` — la page unique
-- `js/config.js` — **vos données** (le seul fichier à modifier)
-- `js/app.js` — la logique (recherche, plan de salle SVG, navigation)
-- `css/style.css` — le style (palette ivoire / or / sauge)
+```
+index.html            page des invités (une seule page, navigation par onglets)
+editeur.html          éditeur visuel du plan (organisateur)
+qr.html               générateur de codes QR (organisateur)
+js/config.js          ★ vos données — le seul fichier à modifier
+js/utils.js           utilitaires + registre des pages
+js/page-*.js          un module par page (accueil, plan, menu, photos, infos, à propos)
+js/app.js             routeur + navigation
+js/qrcode.js          générateur QR complet (Reed-Solomon, masques, versions 1-10)
+js/editeur.js         logique de l'éditeur (glisser-déposer, export)
+js/pwa.js + sw.js     installation + mode hors ligne
+css/*.css             style de base + un fichier par page (mode sombre automatique)
+```
