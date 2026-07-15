@@ -2,12 +2,56 @@
    Page : Photos
    ============================================================================ */
 
+.photos-carte { max-width: 420px; margin-left: auto; margin-right: auto; }
+
 .photos-icone { font-size: 2.6rem; margin-bottom: 0.4rem; }
 
 .photos-motclic {
-  margin-top: 1rem;
+  margin-top: 1.1rem;
+  padding: 0.7rem 1rem;
+  border: 2px dashed var(--surlignage);
+  border-radius: var(--rayon);
+  background: var(--survol);
   font-family: var(--police-titre);
   font-size: 1.3rem;
   font-style: italic;
   color: var(--accent-fonce);
 }
+
+.photos-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.bouton-secondaire {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  background: transparent;
+  color: var(--accent-fonce);
+  text-decoration: none;
+  border: 1.5px solid var(--accent);
+  cursor: pointer;
+  font-family: var(--police-texte);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.bouton-secondaire:hover { background: var(--survol); }
+.bouton-secondaire:active { transform: scale(0.97); }
+
+.photos-confirmation {
+  min-height: 1.4rem;
+  margin-top: 0.6rem;
+  color: var(--sauge);
+  font-weight: 500;
+  font-size: 0.95rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.photos-confirmation.visible { opacity: 1; }

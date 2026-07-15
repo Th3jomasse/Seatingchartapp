@@ -21,14 +21,107 @@
   margin: 0.45rem auto 0;
 }
 
-.menu-plat { padding: 0.45rem 0; }
+/* ------------------------------------------------------------ Rangée de filtres */
+
+.menu-filtres {
+  margin: 0 0 1.1rem;
+}
+
+.menu-puces {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.menu-puce {
+  font-family: var(--police-texte);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--encre-douce);
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.menu-puce:hover { background: var(--survol); }
+.menu-puce:active { transform: scale(0.96); }
+
+.menu-puce-actif {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .menu-puce-actif { color: #201e1b; }
+}
+
+.menu-compteur {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--encre-douce);
+  margin-top: 0.5rem;
+  min-height: 1.1em;
+}
+
+/* ------------------------------------------------------------------- Plats */
+
+.menu-conteneur .carte-menu {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.menu-conteneur .carte-menu.menu-anime-actif {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-plat {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--ligne);
+}
+
+.menu-plat:last-child { border-bottom: none; }
+
+.menu-plat-entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 0.5rem;
+}
 
 .menu-plat-nom { font-size: 1.02rem; }
+
+.menu-pastilles {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.menu-pastille {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--sauge);
+  background: var(--survol);
+  border: 1px solid var(--ligne);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  white-space: nowrap;
+}
 
 .menu-plat-note {
   font-size: 0.8rem;
   font-style: italic;
   color: var(--encre-douce);
+  margin-top: 0.2rem;
 }
 
 .menu-note {

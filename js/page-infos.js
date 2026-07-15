@@ -6,15 +6,25 @@
   "use strict";
   const el = AppUtils.el;
 
+  // Crée une carte avec une petite icône et un titre en en-tête
+  function creerCarte(icone, titre) {
+    const carte = el("div", "carte infos-carte");
+    const entete = el("div", "infos-entete");
+    entete.appendChild(el("span", "infos-icone", icone));
+    entete.appendChild(el("h3", "infos-titre", titre));
+    carte.appendChild(entete);
+    return carte;
+  }
+
   function rendreInfos(racine) {
     const section = el("section");
     section.appendChild(el("h2", "titre-page", "Infos pratiques"));
     const infos = CONFIG.infos || {};
 
+    // 📍 Adresse
     if (infos.adresse) {
-      const carte = el("div", "carte texte-centre");
-      carte.appendChild(el("h3", "menu-section", "📍 Adresse"));
-      carte.appendChild(el("p", "", infos.adresse));
+      const carte = creerCarte("📍", "Adresse");
+      carte.appendChild(el("p", "infos-texte", infos.adresse));
       if (infos.googleMapsLien) {
         const lien = el("a", "bouton-principal", "Ouvrir dans Google Maps");
         lien.href = infos.googleMapsLien;
@@ -24,6 +34,62 @@
       }
       section.appendChild(carte);
     }
+
+    // 🚗 Stationnement
+    if (infos.stationnement) {
+      const carte = creerCarte("🚗", "Stationnement");
+      carte.appendChild(el("p", "infos-texte", infos.stationnement));
+      section.appendChild(carte);
+    }
+
+    // 🛏️ Hébergement
+    if (infos.hebergement) {
+      const carte = creerCarte("🛏️", "Hébergement");
+      carte.appendChild(el("p", "infos-texte", infos.hebergement));
+      section.appendChild(carte);
+    }
+
+    // 👗 Code vestimentaire
+    if (infos.codeVestimentaire) {
+      const carte = creerCarte("👗", "Code vestimentaire");
+      carte.appendChild(el("p", "infos-texte", infos.codeVestimentaire));
+      section.appendChild(carte);
+    }
+
+    // 💬 Une question?
+    const contact = infos.contact || {};
+    if (contact.nom || contact.telephone || contact.courriel) {
+      const carte = creerCarte("💬", "Une question?");
+      if (contact.nom) {
+        carte.appendChild(el("p", "infos-texte", contact.nom));
+      }
+      const liensContact = el("div", "infos-contact-liens");
+      if (contact.telephone) {
+        const lienTel = el("a", "infos-lien-contact", "📞 " + contact.telephone);
+        lienTel.href = "tel:" + contact.telephone.replace(/\s+/g, "");
+        liensContact.appendChild(lienTel);
+      }
+      if (contact.courriel) {
+        const lienCourriel = el("a", "infos-lien-contact", "✉️ " + contact.courriel);
+        lienCourriel.href = "mailto:" + contact.courriel;
+        liensContact.appendChild(lienCourriel);
+      }
+      carte.appendChild(liensContact);
+      section.appendChild(carte);
+    }
+
+    // ✉️ RSVP
+    if (infos.rsvpLien) {
+      const carte = creerCarte("✉️", "RSVP");
+      carte.appendChild(el("p", "infos-texte", "Merci de confirmer votre présence dès que possible."));
+      const lienRsvp = el("a", "bouton-principal", "Confirmer ma présence");
+      lienRsvp.href = infos.rsvpLien;
+      lienRsvp.target = "_blank";
+      lienRsvp.rel = "noopener";
+      carte.appendChild(lienRsvp);
+      section.appendChild(carte);
+    }
+
     racine.appendChild(section);
   }
 

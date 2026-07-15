@@ -4,7 +4,37 @@
 
 .hero {
   text-align: center;
-  padding: 2.5rem 0 1.5rem;
+  padding: 2rem 0 1.5rem;
+}
+
+/* ------------------------------------------------------------- Monogramme */
+
+.monogramme {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.monogramme-cercle {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--carte);
+  border: 1.5px solid var(--surlignage);
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+  box-shadow: var(--ombre);
+}
+
+.monogramme-lettres {
+  font-family: var(--police-titre);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent-fonce);
 }
 
 .hero-ornement {
@@ -29,13 +59,77 @@
   margin-top: 0.4rem;
 }
 
+.hero-separateur {
+  width: 42px;
+  height: 1px;
+  margin: 0.9rem auto 0.75rem;
+  background: var(--ligne);
+}
+
 .hero-infos {
-  margin-top: 0.9rem;
   color: var(--encre-douce);
   font-size: 0.95rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
+/* ----------------------------------------------------------- Compte à rebours */
+
+.compte-rebours {
+  text-align: center;
+  margin: 1.5rem 0;
+  padding: 1.15rem 0.75rem 1.25rem;
+  border-top: 1px solid var(--ligne);
+  border-bottom: 1px solid var(--ligne);
+}
+
+.compte-rebours-titre {
+  font-family: var(--police-titre);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--encre-douce);
+  margin-bottom: 0.85rem;
+}
+
+.compte-rebours-grille {
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.compte-rebours-unite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3.3rem;
+}
+
+.compte-rebours-nombre {
+  font-family: var(--police-titre);
+  font-size: 1.85rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent-fonce);
+  font-variant-numeric: tabular-nums;
+}
+
+.compte-rebours-libelle {
+  margin-top: 0.3rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--encre-douce);
+}
+
+.compte-rebours-aujourdhui {
+  font-family: var(--police-titre);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent-fonce);
+}
+
+/* ------------------------------------------------------------------ Raccourcis */
 
 .raccourcis {
   display: grid;
@@ -66,6 +160,39 @@
 .raccourci:hover { border-color: var(--accent); }
 
 .raccourci-icone { font-size: 1.7rem; }
+
+/* ------------------------------------------------------------- Animations */
+
+@keyframes accueil-entree-douce {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-entree {
+  animation: accueil-entree-douce 0.7s ease both;
+}
+
+.anim-1 { animation-delay: 0s; }
+.anim-2 { animation-delay: 0.1s; }
+.anim-3 { animation-delay: 0.18s; }
+.anim-4 { animation-delay: 0.26s; }
+.anim-5 { animation-delay: 0.34s; }
+.anim-6 { animation-delay: 0.42s; }
+.anim-7 { animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-entree {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 
 @media (min-width: 700px) {
   .hero-titre { font-size: 3.4rem; }

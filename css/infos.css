@@ -1,3 +1,45 @@
 /* ============================================================================
    Page : Infos pratiques
    ============================================================================ */
+
+.infos-carte {
+  text-align: left;
+}
+
+.infos-entete {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.infos-icone { font-size: 1.5rem; line-height: 1; }
+
+.infos-titre {
+  font-family: var(--police-titre);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--encre);
+}
+
+.infos-texte {
+  color: var(--encre);
+}
+
+.infos-contact-liens {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.infos-lien-contact {
+  color: var(--accent-fonce);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--ligne);
+  padding-bottom: 0.15rem;
+  width: fit-content;
+}
+
+.infos-lien-contact:hover { color: var(--accent); }
