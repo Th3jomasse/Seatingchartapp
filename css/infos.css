@@ -13,7 +13,7 @@
   margin-bottom: 0.6rem;
 }
 
-.infos-icone { font-size: 1.5rem; line-height: 1; }
+.infos-icone { display: flex; align-items: center; color: var(--accent); }
 
 .infos-titre {
   font-family: var(--police-titre);
@@ -34,6 +34,9 @@
 }
 
 .infos-lien-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--accent-fonce);
   text-decoration: none;
   font-weight: 500;

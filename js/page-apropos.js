@@ -33,7 +33,7 @@
     id: "apropos",
     ordre: 60,
     libelle: AppUtils.estMariage ? "Les mariés" : "À propos",
-    icone: AppUtils.estMariage ? "💍" : "ℹ️",
+    icone: AppUtils.estMariage ? "coeur" : "entreprise",
     active: CONFIG.pages.aPropos,
     rendu: rendreAPropos,
   });

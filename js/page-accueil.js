@@ -73,7 +73,8 @@
     });
     section.appendChild(grille);
 
-    const messageAujourdhui = el("p", "compte-rebours-aujourdhui", "C'est aujourd'hui! 🎉");
+    const messageAujourdhui = el("p", "compte-rebours-aujourdhui", "C'est aujourd'hui! ");
+    messageAujourdhui.appendChild(Icones.creer("fete", 20));
     messageAujourdhui.hidden = true;
     section.appendChild(messageAujourdhui);
 
@@ -157,7 +158,9 @@
     const raccourcis = el("section", "raccourcis anim-entree anim-7");
     pages.forEach(function (page) {
       const b = el("button", "raccourci");
-      b.appendChild(el("span", "raccourci-icone", page.icone));
+      const iconeRaccourci = el("span", "raccourci-icone");
+      iconeRaccourci.appendChild(Icones.creer(page.icone, 26));
+      b.appendChild(iconeRaccourci);
       b.appendChild(el("span", "", page.libelle));
       b.addEventListener("click", function () { location.hash = page.id; });
       raccourcis.appendChild(b);
@@ -169,7 +172,7 @@
     id: "accueil",
     ordre: 10,
     libelle: "Accueil",
-    icone: "🏠",
+    icone: "accueil",
     active: true,
     rendu: rendreAccueil,
   });

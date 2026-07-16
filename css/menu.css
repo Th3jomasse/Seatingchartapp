@@ -35,6 +35,9 @@
 }
 
 .menu-puce {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--police-texte);
   font-size: 0.82rem;
   font-weight: 500;
@@ -106,7 +109,9 @@
 }
 
 .menu-pastille {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
   font-size: 0.72rem;
   font-weight: 500;
   color: var(--sauge);

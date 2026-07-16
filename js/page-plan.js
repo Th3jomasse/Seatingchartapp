@@ -563,7 +563,7 @@
     id: "plan",
     ordre: 20,
     libelle: "Ma place",
-    icone: "🪑",
+    icone: "place",
     active: CONFIG.pages.plan,
     rendu: rendrePlan,
   });

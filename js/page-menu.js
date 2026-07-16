@@ -13,21 +13,21 @@
   const REGIMES = [
     {
       cle: "vegetarien",
-      badge: "🌱",
+      icone: "vegetarien",
       libelle: "Végétarien",
       regexNorm: /vegetarien/,
       regexTexte: /v[ée]g[ée]tarien(?:ne)?s?/gi,
     },
     {
       cle: "sansGluten",
-      badge: "🌾",
+      icone: "sans-gluten",
       libelle: "Sans gluten",
       regexNorm: /sans\s*gluten/,
       regexTexte: /sans\s*gluten/gi,
     },
     {
       cle: "vegane",
-      badge: "🌿",
+      icone: "vegane",
       libelle: "Végane",
       regexNorm: /vegan(?:e)?/,
       regexTexte: /v[ée]gan(?:e)?s?/gi,
@@ -85,8 +85,10 @@
 
     const conteneur = el("div", "menu-conteneur");
 
-    function creerPuce(cle, texte) {
-      const puce = el("button", "menu-puce", texte);
+    function creerPuce(cle, texte, nomIcone) {
+      const puce = el("button", "menu-puce");
+      if (nomIcone) puce.appendChild(Icones.creer(nomIcone, 15));
+      puce.appendChild(el("span", "", texte));
       puce.type = "button";
       puce.dataset.cle = cle;
       puce.setAttribute("aria-pressed", cle === filtreActif ? "true" : "false");
@@ -100,7 +102,7 @@
 
     rangeePuces.appendChild(creerPuce("tout", "Tout"));
     regimesDispo.forEach(function (regime) {
-      rangeePuces.appendChild(creerPuce(regime.cle, regime.badge + " " + regime.libelle));
+      rangeePuces.appendChild(creerPuce(regime.cle, regime.libelle, regime.icone));
     });
 
     function actualiser() {
@@ -135,7 +137,9 @@
           if (regimes.length) {
             const pastilles = el("span", "menu-pastilles");
             regimes.forEach(function (regime) {
-              const pastille = el("span", "menu-pastille", regime.badge + " " + regime.libelle);
+              const pastille = el("span", "menu-pastille");
+              pastille.appendChild(Icones.creer(regime.icone, 13));
+              pastille.appendChild(el("span", "", regime.libelle));
               pastille.title = regime.libelle;
               pastilles.appendChild(pastille);
             });
@@ -178,7 +182,7 @@
     id: "menu",
     ordre: 30,
     libelle: "Menu",
-    icone: "🍽️",
+    icone: "menu",
     active: CONFIG.pages.menu,
     rendu: rendreMenu,
   });

@@ -10,7 +10,7 @@
 
 // Incrémenter cette version à chaque changement du shell pour invalider
 // proprement les anciens caches.
-const VERSION = "v2";
+const VERSION = "v3";
 const CACHE_NAME = "place-shell-" + VERSION;
 
 // Liste des fichiers du shell applicatif (voir index.html pour la liste
@@ -28,6 +28,7 @@ const FICHIERS_SHELL = [
   "css/apropos.css",
   "js/config.js",
   "js/utils.js",
+  "js/icones.js",
   "js/page-accueil.js",
   "js/page-plan.js",
   "js/page-menu.js",

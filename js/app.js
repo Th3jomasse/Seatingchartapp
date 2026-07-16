@@ -22,7 +22,9 @@
   PAGES.forEach(function (page) {
     const bouton = AppUtils.el("button", "nav-bouton");
     bouton.setAttribute("data-page", page.id);
-    bouton.appendChild(AppUtils.el("span", "nav-icone", page.icone));
+    const iconeNav = AppUtils.el("span", "nav-icone");
+    iconeNav.appendChild(Icones.creer(page.icone, 22));
+    bouton.appendChild(iconeNav);
     bouton.appendChild(AppUtils.el("span", "nav-libelle", page.libelle));
     bouton.addEventListener("click", function () {
       location.hash = page.id;

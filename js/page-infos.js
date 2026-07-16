@@ -7,10 +7,12 @@
   const el = AppUtils.el;
 
   // Crée une carte avec une petite icône et un titre en en-tête
-  function creerCarte(icone, titre) {
+  function creerCarte(nomIcone, titre) {
     const carte = el("div", "carte infos-carte");
     const entete = el("div", "infos-entete");
-    entete.appendChild(el("span", "infos-icone", icone));
+    const icone = el("span", "infos-icone");
+    icone.appendChild(Icones.creer(nomIcone, 22));
+    entete.appendChild(icone);
     entete.appendChild(el("h3", "infos-titre", titre));
     carte.appendChild(entete);
     return carte;
@@ -21,9 +23,9 @@
     section.appendChild(el("h2", "titre-page", "Infos pratiques"));
     const infos = CONFIG.infos || {};
 
-    // 📍 Adresse
+    // Adresse
     if (infos.adresse) {
-      const carte = creerCarte("📍", "Adresse");
+      const carte = creerCarte("adresse", "Adresse");
       carte.appendChild(el("p", "infos-texte", infos.adresse));
       if (infos.googleMapsLien) {
         const lien = el("a", "bouton-principal", "Ouvrir dans Google Maps");
@@ -35,42 +37,46 @@
       section.appendChild(carte);
     }
 
-    // 🚗 Stationnement
+    // Stationnement
     if (infos.stationnement) {
-      const carte = creerCarte("🚗", "Stationnement");
+      const carte = creerCarte("stationnement", "Stationnement");
       carte.appendChild(el("p", "infos-texte", infos.stationnement));
       section.appendChild(carte);
     }
 
-    // 🛏️ Hébergement
+    // Hébergement
     if (infos.hebergement) {
-      const carte = creerCarte("🛏️", "Hébergement");
+      const carte = creerCarte("hebergement", "Hébergement");
       carte.appendChild(el("p", "infos-texte", infos.hebergement));
       section.appendChild(carte);
     }
 
-    // 👗 Code vestimentaire
+    // Code vestimentaire
     if (infos.codeVestimentaire) {
-      const carte = creerCarte("👗", "Code vestimentaire");
+      const carte = creerCarte("vestimentaire", "Code vestimentaire");
       carte.appendChild(el("p", "infos-texte", infos.codeVestimentaire));
       section.appendChild(carte);
     }
 
-    // 💬 Une question?
+    // Une question?
     const contact = infos.contact || {};
     if (contact.nom || contact.telephone || contact.courriel) {
-      const carte = creerCarte("💬", "Une question?");
+      const carte = creerCarte("question", "Une question?");
       if (contact.nom) {
         carte.appendChild(el("p", "infos-texte", contact.nom));
       }
       const liensContact = el("div", "infos-contact-liens");
       if (contact.telephone) {
-        const lienTel = el("a", "infos-lien-contact", "📞 " + contact.telephone);
+        const lienTel = el("a", "infos-lien-contact");
+        lienTel.appendChild(Icones.creer("telephone", 16));
+        lienTel.appendChild(el("span", "", contact.telephone));
         lienTel.href = "tel:" + contact.telephone.replace(/\s+/g, "");
         liensContact.appendChild(lienTel);
       }
       if (contact.courriel) {
-        const lienCourriel = el("a", "infos-lien-contact", "✉️ " + contact.courriel);
+        const lienCourriel = el("a", "infos-lien-contact");
+        lienCourriel.appendChild(Icones.creer("courriel", 16));
+        lienCourriel.appendChild(el("span", "", contact.courriel));
         lienCourriel.href = "mailto:" + contact.courriel;
         liensContact.appendChild(lienCourriel);
       }
@@ -78,9 +84,9 @@
       section.appendChild(carte);
     }
 
-    // ✉️ RSVP
+    // RSVP
     if (infos.rsvpLien) {
-      const carte = creerCarte("✉️", "RSVP");
+      const carte = creerCarte("rsvp", "RSVP");
       carte.appendChild(el("p", "infos-texte", "Merci de confirmer votre présence dès que possible."));
       const lienRsvp = el("a", "bouton-principal", "Confirmer ma présence");
       lienRsvp.href = infos.rsvpLien;
@@ -97,7 +103,7 @@
     id: "infos",
     ordre: 50,
     libelle: "Infos",
-    icone: "ℹ️",
+    icone: "infos",
     active: CONFIG.pages.infos,
     rendu: rendreInfos,
   });

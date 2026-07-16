@@ -4,7 +4,12 @@
 
 .photos-carte { max-width: 420px; margin-left: auto; margin-right: auto; }
 
-.photos-icone { font-size: 2.6rem; margin-bottom: 0.4rem; }
+.photos-icone {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+  color: var(--accent);
+}
 
 .photos-motclic {
   margin-top: 1.1rem;

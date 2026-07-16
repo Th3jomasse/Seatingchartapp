@@ -181,7 +181,10 @@ body {
   cursor: pointer;
 }
 
-.nav-icone { font-size: 1.35rem; }
+.nav-icone { display: flex; align-items: center; justify-content: center; height: 1.5rem; }
+
+/* Icônes SVG (Lucide) : héritent de la couleur du texte */
+.icone { display: block; flex-shrink: 0; }
 
 .nav-bouton.actif {
   color: var(--accent-fonce);

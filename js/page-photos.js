@@ -48,7 +48,9 @@
     const section = el("section");
     section.appendChild(el("h2", "titre-page", CONFIG.photos.titre));
     const carte = el("div", "carte texte-centre photos-carte");
-    carte.appendChild(el("p", "photos-icone", "📸"));
+    const grandeIcone = el("p", "photos-icone");
+    grandeIcone.appendChild(Icones.creer("photos", 44));
+    carte.appendChild(grandeIcone);
     carte.appendChild(el("p", "", CONFIG.photos.description));
 
     const lien = el("a", "bouton-principal", CONFIG.photos.texteBouton);
@@ -109,7 +111,7 @@
     id: "photos",
     ordre: 40,
     libelle: "Photos",
-    icone: "📸",
+    icone: "photos",
     active: CONFIG.pages.photos,
     rendu: rendrePhotos,
   });

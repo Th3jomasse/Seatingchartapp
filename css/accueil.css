@@ -123,6 +123,10 @@
 }
 
 .compte-rebours-aujourdhui {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
   font-family: var(--police-titre);
   font-size: 1.35rem;
   font-weight: 600;
@@ -159,7 +163,7 @@
 .raccourci:active { transform: scale(0.97); }
 .raccourci:hover { border-color: var(--accent); }
 
-.raccourci-icone { font-size: 1.7rem; }
+.raccourci-icone { display: flex; align-items: center; justify-content: center; height: 1.9rem; color: var(--accent-fonce); }
 
 /* ------------------------------------------------------------- Animations */
 
