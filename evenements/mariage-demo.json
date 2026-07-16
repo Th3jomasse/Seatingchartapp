@@ -1,0 +1,314 @@
+{
+  "event": {
+    "type": "mariage",
+    "titre": "Sophie & Mathieu",
+    "sousTitre": "Nous célébrons notre mariage",
+    "date": "Samedi 12 septembre 2026",
+    "lieu": "Domaine du Lac, Québec",
+    "dateISO": "2026-09-12T15:00:00-04:00",
+    "messageBienvenue": "Bienvenue! Merci de célébrer avec nous. Trouvez votre place, consultez le menu et partagez vos photos de la soirée."
+  },
+  "theme": {
+    "mode": "clair",
+    "logo": "",
+    "couleurs": {
+      "accent": "",
+      "accentFonce": "",
+      "surlignage": "",
+      "sauge": "",
+      "fond": "",
+      "carte": "",
+      "encre": ""
+    }
+  },
+  "pages": {
+    "plan": true,
+    "menu": true,
+    "photos": true,
+    "infos": true,
+    "aPropos": true,
+    "horaire": true
+  },
+  "infos": {
+    "adresse": "Domaine du Lac, 1234 chemin du Lac, Québec (QC) G1A 2B3",
+    "googleMapsLien": "https://maps.google.com/?q=Domaine+du+Lac+Quebec",
+    "stationnement": "Stationnement gratuit sur place, à droite de l'entrée principale.",
+    "hebergement": "Un bloc de chambres est réservé à l'Hôtel du Fleuve (10 min) — mentionnez « mariage Sophie et Mathieu » au 1 800 555-0199.",
+    "codeVestimentaire": "Tenue de soirée (cocktail). La cérémonie a lieu à l'extérieur, prévoyez un lainage.",
+    "contact": {
+      "nom": "Julie (témoin)",
+      "telephone": "418 555-0123",
+      "courriel": "julie@example.com"
+    },
+    "rsvpLien": ""
+  },
+  "salle": {
+    "reperes": [
+      {
+        "nom": "Scène",
+        "x": 50,
+        "y": 6,
+        "largeur": 30,
+        "hauteur": 8
+      },
+      {
+        "nom": "Piste de danse",
+        "x": 50,
+        "y": 24,
+        "largeur": 24,
+        "hauteur": 16
+      },
+      {
+        "nom": "Bar",
+        "x": 92,
+        "y": 50,
+        "largeur": 10,
+        "hauteur": 22
+      },
+      {
+        "nom": "Entrée",
+        "x": 50,
+        "y": 96,
+        "largeur": 20,
+        "hauteur": 6
+      }
+    ],
+    "tables": [
+      {
+        "nom": "Table d'honneur",
+        "forme": "rect",
+        "x": 50,
+        "y": 14,
+        "invites": [
+          "Sophie Tremblay",
+          "Mathieu Gagnon",
+          "Julie Tremblay",
+          "Marc Tremblay",
+          "Diane Gagnon",
+          "Pierre Gagnon"
+        ]
+      },
+      {
+        "nom": "Table 1 — Famille Tremblay",
+        "forme": "ronde",
+        "x": 20,
+        "y": 38,
+        "invites": [
+          "Luc Tremblay",
+          "Nathalie Bouchard",
+          "Émile Tremblay",
+          "Léa Tremblay",
+          "Ginette Roy",
+          "Robert Roy"
+        ]
+      },
+      {
+        "nom": "Table 2 — Famille Gagnon",
+        "forme": "ronde",
+        "x": 80,
+        "y": 38,
+        "invites": [
+          "Sylvie Gagnon",
+          "André Gagnon",
+          "Catherine Gagnon",
+          "Vincent Lavoie",
+          "Monique Lavoie",
+          "Jean-Guy Lavoie"
+        ]
+      },
+      {
+        "nom": "Table 3 — Amis du cégep",
+        "forme": "ronde",
+        "x": 20,
+        "y": 62,
+        "invites": [
+          "Alexandre Côté",
+          "Marie-Pier Fortin",
+          "Samuel Bergeron",
+          "Camille Ouellet",
+          "Jonathan Pelletier",
+          "Audrey Morin"
+        ]
+      },
+      {
+        "nom": "Table 4 — Collègues",
+        "forme": "ronde",
+        "x": 50,
+        "y": 62,
+        "invites": [
+          "Isabelle Girard",
+          "Patrick Simard",
+          "Karine Lévesque",
+          "François Bédard",
+          "Mélanie Caron",
+          "Stéphane Paquette"
+        ]
+      },
+      {
+        "nom": "Table 5 — Amis d'enfance",
+        "forme": "ronde",
+        "x": 80,
+        "y": 62,
+        "invites": [
+          "Gabriel Nadeau",
+          "Rosalie Dubé",
+          "William Poirier",
+          "Laurence Gauthier",
+          "Antoine Mercier",
+          "Jade Lachance"
+        ]
+      },
+      {
+        "nom": "Table 6 — Voisins et amis",
+        "forme": "ronde",
+        "x": 35,
+        "y": 82,
+        "invites": [
+          "Denis Beaulieu",
+          "Lise Beaulieu",
+          "Marco Dion",
+          "Chantal Dion",
+          "Yves Fournier",
+          "Micheline Fournier"
+        ]
+      },
+      {
+        "nom": "Table 7 — Cousins et cousines",
+        "forme": "ronde",
+        "x": 65,
+        "y": 82,
+        "invites": [
+          "Olivier Tremblay",
+          "Maude Gagnon",
+          "Félix Bouchard",
+          "Ariane Roy",
+          "Nicolas Lavoie",
+          "Sarah Côté"
+        ]
+      }
+    ]
+  },
+  "menu": {
+    "note": "Veuillez aviser le personnel de toute allergie alimentaire.",
+    "sections": [
+      {
+        "titre": "Cocktail",
+        "plats": [
+          {
+            "nom": "Bouchées de saumon fumé",
+            "note": ""
+          },
+          {
+            "nom": "Mini-brochettes de poulet érable et moutarde",
+            "note": ""
+          },
+          {
+            "nom": "Croustades de champignons",
+            "note": "végétarien"
+          }
+        ]
+      },
+      {
+        "titre": "Entrée",
+        "plats": [
+          {
+            "nom": "Velouté de courge musquée",
+            "note": "sans gluten"
+          },
+          {
+            "nom": "Salade de chèvre chaud, noix et miel",
+            "note": "végétarien"
+          }
+        ]
+      },
+      {
+        "titre": "Plat principal",
+        "plats": [
+          {
+            "nom": "Filet mignon, sauce au vin rouge, légumes racines",
+            "note": ""
+          },
+          {
+            "nom": "Pavé de saumon, beurre citronné, riz sauvage",
+            "note": "sans gluten"
+          },
+          {
+            "nom": "Risotto aux champignons sauvages",
+            "note": "végétarien"
+          }
+        ]
+      },
+      {
+        "titre": "Dessert",
+        "plats": [
+          {
+            "nom": "Gâteau des mariés — vanille et framboises",
+            "note": ""
+          },
+          {
+            "nom": "Table à desserts et café",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "titre": "Bar",
+        "plats": [
+          {
+            "nom": "Vin rouge et blanc, bière locale, mousseux",
+            "note": ""
+          },
+          {
+            "nom": "Cocktail signature « Le Sophie-Mathieu »",
+            "note": ""
+          },
+          {
+            "nom": "Boissons sans alcool",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  "photos": {
+    "titre": "Partagez vos photos!",
+    "description": "Toutes vos photos de la soirée au même endroit. Cliquez sur le bouton ci-dessous pour accéder à notre album partagé et au photobooth.",
+    "lien": "https://photos.app.goo.gl/VOTRE-LIEN-ICI",
+    "texteBouton": "Ouvrir l'album photo",
+    "motClic": "#SophieEtMathieu2026"
+  },
+  "aPropos": {
+    "titre": "Notre histoire",
+    "paragraphes": [
+      "Sophie et Mathieu se sont rencontrés en 2018 lors d'un souper entre amis à Québec. Ce qui devait être une simple soirée s'est transformé en une belle histoire d'amour.",
+      "Après sept ans d'aventures, de voyages et de projets communs, Mathieu a fait la grande demande au sommet du mont Sainte-Anne, à l'automne 2025.",
+      "Aujourd'hui, nous sommes tellement heureux de partager ce moment avec vous, les personnes qui comptent le plus dans nos vies. Merci d'être là!"
+    ]
+  },
+  "horaire": [
+    {
+      "heure": "15 h 00",
+      "activite": "Cérémonie"
+    },
+    {
+      "heure": "16 h 00",
+      "activite": "Cocktail et photos"
+    },
+    {
+      "heure": "18 h 00",
+      "activite": "Souper"
+    },
+    {
+      "heure": "20 h 30",
+      "activite": "Première danse"
+    },
+    {
+      "heure": "21 h 00",
+      "activite": "Soirée dansante"
+    },
+    {
+      "heure": "23 h 00",
+      "activite": "Table à desserts de fin de soirée"
+    }
+  ]
+}

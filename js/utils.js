@@ -62,6 +62,24 @@
     Object.keys(correspondance).forEach(function (cle) {
       if (couleurs[cle]) racine.style.setProperty(correspondance[cle], couleurs[cle]);
     });
+
+    // Polices personnalisées (Google Fonts) : theme.polices = {titre, texte}
+    const polices = theme.polices || {};
+    const familles = [];
+    if (polices.titre) {
+      racine.style.setProperty("--police-titre", '"' + polices.titre + '", Georgia, serif');
+      familles.push("family=" + encodeURIComponent(polices.titre).replace(/%20/g, "+") + ":ital,wght@0,400;0,600;1,400");
+    }
+    if (polices.texte) {
+      racine.style.setProperty("--police-texte", '"' + polices.texte + '", "Segoe UI", sans-serif');
+      familles.push("family=" + encodeURIComponent(polices.texte).replace(/%20/g, "+") + ":wght@300;400;500;600");
+    }
+    if (familles.length) {
+      const lien = document.createElement("link");
+      lien.rel = "stylesheet";
+      lien.href = "https://fonts.googleapis.com/css2?" + familles.join("&") + "&display=swap";
+      document.head.appendChild(lien);
+    }
   })();
 
   window.AppUtils = {

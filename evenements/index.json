@@ -1,0 +1,10 @@
+{
+  "parDefaut": "mariage-demo",
+  "evenements": [
+    {
+      "slug": "mariage-demo",
+      "titre": "Sophie & Mathieu",
+      "date": "Samedi 12 septembre 2026"
+    }
+  ]
+}

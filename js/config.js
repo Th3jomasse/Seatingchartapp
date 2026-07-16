@@ -3,7 +3,7 @@
 // C'est le SEUL fichier à modifier pour personnaliser l'application.
 // ============================================================================
 
-const CONFIG = {
+var CONFIG = {
 
   // --------------------------------------------------------------------------
   // Informations générales

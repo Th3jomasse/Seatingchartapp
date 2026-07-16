@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio — Tableau de bord</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="icons/icone.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/admin-contenu.css">
+  <link rel="stylesheet" href="css/admin-apparence.css">
+  <link rel="stylesheet" href="css/admin-plan.css">
+  <link rel="stylesheet" href="css/admin-publication.css">
+</head>
+<body class="admin">
+
+  <!-- Barre latérale : liste des événements -->
+  <aside class="barre-laterale">
+    <div class="marque">
+      <span class="marque-titre">Trouvez votre place</span>
+      <span class="marque-sous-titre">Studio de gestion</span>
+    </div>
+    <button type="button" id="bouton-nouvel-evenement" class="bouton-plein">+ Nouvel événement</button>
+    <ul id="liste-evenements" class="liste-evenements"></ul>
+    <div class="barre-laterale-pied">
+      <button type="button" id="bouton-importer" class="bouton-discret">Importer…</button>
+      <button type="button" id="bouton-tout-exporter" class="bouton-discret">Tout exporter</button>
+    </div>
+  </aside>
+
+  <!-- Zone principale -->
+  <main class="zone-principale">
+    <header class="entete-admin">
+      <div class="entete-admin-infos">
+        <h1 id="titre-evenement-courant" class="titre-evenement"></h1>
+        <span id="statut-brouillon" class="statut-brouillon"></span>
+      </div>
+      <nav id="barre-onglets" class="barre-onglets" aria-label="Sections"></nav>
+    </header>
+
+    <div class="zone-travail">
+      <section id="conteneur-onglet" class="conteneur-onglet"></section>
+
+      <!-- Aperçu en direct (app invités) -->
+      <aside class="zone-apercu">
+        <p class="apercu-libelle">Aperçu invités — en direct</p>
+        <div class="cadre-telephone">
+          <iframe id="cadre-apercu" src="index.html?apercu=1" title="Aperçu de l'application invités"></iframe>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <input type="file" id="champ-import" accept=".json,application/json" hidden>
+
+  <script src="js/qrcode.js"></script>
+  <script src="js/admin/noyau.js"></script>
+  <script src="js/admin/onglet-contenu.js"></script>
+  <script src="js/admin/onglet-apparence.js"></script>
+  <script src="js/admin/onglet-plan.js"></script>
+  <script src="js/admin/onglet-qr.js"></script>
+  <script src="js/admin/onglet-publication.js"></script>
+</body>
+</html>

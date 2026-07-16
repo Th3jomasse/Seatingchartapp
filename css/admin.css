@@ -1,0 +1,424 @@
+/* ============================================================================
+   Tableau de bord (admin.html) — noyau
+   Design professionnel : barre latérale encre, plan de travail ivoire,
+   accents or. Les onglets ont chacun leur feuille admin-*.css.
+   ============================================================================ */
+
+:root {
+  --a-encre: #26231e;
+  --a-encre-2: #33302a;
+  --a-encre-3: #454138;
+  --a-ivoire: #f6f3ec;
+  --a-blanc: #ffffff;
+  --a-texte: #33302a;
+  --a-texte-doux: #837c6f;
+  --a-texte-inverse: #efece4;
+  --a-texte-inverse-doux: #a59d8d;
+  --a-or: #a08a52;
+  --a-or-fonce: #82703f;
+  --a-ligne: #e5dfd2;
+  --a-ligne-sombre: #454138;
+  --a-vert: #4e7a55;
+  --a-rouge: #a8453a;
+  --a-ombre: 0 2px 14px rgba(38, 35, 30, 0.09);
+  --a-rayon: 10px;
+  --a-titre: "Cormorant Garamond", Georgia, serif;
+  --a-texte-police: "Jost", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body.admin {
+  font-family: var(--a-texte-police);
+  background: var(--a-ivoire);
+  color: var(--a-texte);
+  min-height: 100vh;
+  display: flex;
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------- Barre latérale */
+
+.barre-laterale {
+  width: 264px;
+  flex-shrink: 0;
+  background: var(--a-encre);
+  color: var(--a-texte-inverse);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+}
+
+.marque {
+  padding: 1.3rem 1.2rem 1.1rem;
+  border-bottom: 1px solid var(--a-ligne-sombre);
+  display: flex;
+  flex-direction: column;
+}
+
+.marque-titre {
+  font-family: var(--a-titre);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #e9dfc8;
+}
+
+.marque-sous-titre {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--a-texte-inverse-doux);
+  margin-top: 0.15rem;
+}
+
+.bouton-plein {
+  margin: 1rem 1.2rem 0.6rem;
+  padding: 0.65rem 1rem;
+  background: var(--a-or);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--a-texte-police);
+  font-weight: 500;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.bouton-plein:hover { background: var(--a-or-fonce); }
+
+.liste-evenements {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 0.4rem 0.7rem;
+}
+
+.evenement-item {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin-bottom: 2px;
+}
+
+.evenement-item:hover { background: var(--a-encre-2); }
+.evenement-item.actif { background: var(--a-encre-3); }
+
+.evenement-bouton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.05rem;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: var(--a-texte-police);
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.evenement-nom {
+  font-weight: 500;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.evenement-date {
+  font-size: 0.74rem;
+  color: var(--a-texte-inverse-doux);
+}
+
+.evenement-actions {
+  display: flex;
+  gap: 0.15rem;
+  padding-right: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.evenement-item:hover .evenement-actions,
+.evenement-item.actif .evenement-actions { opacity: 1; }
+
+.evenement-actions button {
+  background: none;
+  border: none;
+  color: var(--a-texte-inverse-doux);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+}
+
+.evenement-actions button:hover { color: #fff; background: var(--a-encre-3); }
+
+.barre-laterale-pied {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.8rem 1.2rem;
+  border-top: 1px solid var(--a-ligne-sombre);
+}
+
+.bouton-discret {
+  flex: 1;
+  background: none;
+  border: 1px solid var(--a-ligne-sombre);
+  color: var(--a-texte-inverse-doux);
+  border-radius: 8px;
+  padding: 0.45rem 0.5rem;
+  font-family: var(--a-texte-police);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.bouton-discret:hover { color: #fff; border-color: var(--a-texte-inverse-doux); }
+
+/* --------------------------------------------------------- Zone principale */
+
+.zone-principale {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.entete-admin {
+  background: var(--a-blanc);
+  border-bottom: 1px solid var(--a-ligne);
+  padding: 1rem 1.6rem 0;
+}
+
+.entete-admin-infos {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.titre-evenement {
+  font-family: var(--a-titre);
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.statut-brouillon {
+  font-size: 0.78rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: #e8f0e9;
+  color: var(--a-vert);
+  font-weight: 500;
+}
+
+.statut-brouillon.non-publie {
+  background: #f7ecd8;
+  color: #93712c;
+}
+
+.barre-onglets {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.onglet-bouton {
+  background: none;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  font-family: var(--a-texte-police);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--a-texte-doux);
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+}
+
+.onglet-bouton:hover { color: var(--a-texte); }
+
+.onglet-bouton.actif {
+  color: var(--a-or-fonce);
+  font-weight: 500;
+  border-bottom-color: var(--a-or);
+}
+
+/* ---------------------------------------------------------- Zone de travail */
+
+.zone-travail {
+  flex: 1;
+  display: flex;
+  gap: 1.4rem;
+  padding: 1.4rem 1.6rem;
+  align-items: flex-start;
+}
+
+.conteneur-onglet {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Éléments de formulaire communs aux onglets */
+
+.a-carte {
+  background: var(--a-blanc);
+  border: 1px solid var(--a-ligne);
+  border-radius: var(--a-rayon);
+  box-shadow: var(--a-ombre);
+  padding: 1.2rem 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.a-carte h2 {
+  font-family: var(--a-titre);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.a-champ { margin-bottom: 0.85rem; }
+
+.a-champ label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--a-texte-doux);
+  margin-bottom: 0.25rem;
+}
+
+.a-champ input[type="text"],
+.a-champ input[type="url"],
+.a-champ input[type="date"],
+.a-champ input[type="time"],
+.a-champ input[type="password"],
+.a-champ input[type="datetime-local"],
+.a-champ select,
+.a-champ textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  font-family: var(--a-texte-police);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--a-texte);
+  background: var(--a-blanc);
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  outline: none;
+}
+
+.a-champ input:focus,
+.a-champ select:focus,
+.a-champ textarea:focus { border-color: var(--a-or); }
+
+.a-champ textarea { resize: vertical; min-height: 4.5rem; }
+
+.a-rangee {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.a-bouton {
+  display: inline-block;
+  padding: 0.55rem 1.3rem;
+  background: var(--a-or);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--a-texte-police);
+  font-weight: 500;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.a-bouton:hover { background: var(--a-or-fonce); }
+.a-bouton:disabled { opacity: 0.5; cursor: default; }
+
+.a-bouton-contour {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: transparent;
+  color: var(--a-or-fonce);
+  border: 1.5px solid var(--a-or);
+  border-radius: 999px;
+  font-family: var(--a-texte-police);
+  font-weight: 500;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.a-bouton-contour:hover { background: #f6efdd; }
+
+.a-bouton-danger {
+  background: none;
+  border: none;
+  color: var(--a-rouge);
+  font-family: var(--a-texte-police);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+}
+
+.a-note {
+  font-size: 0.82rem;
+  color: var(--a-texte-doux);
+  margin-top: 0.35rem;
+}
+
+/* --------------------------------------------------------------- Aperçu */
+
+.zone-apercu {
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 1.4rem;
+}
+
+.apercu-libelle {
+  text-align: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--a-texte-doux);
+  margin-bottom: 0.6rem;
+}
+
+.cadre-telephone {
+  width: 300px;
+  height: 620px;
+  border-radius: 34px;
+  border: 9px solid var(--a-encre);
+  background: var(--a-encre);
+  box-shadow: 0 14px 40px rgba(38, 35, 30, 0.28);
+  overflow: hidden;
+}
+
+.cadre-telephone iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 24px;
+  background: #fff;
+}
+
+/* ---------------------------------------------------------- Écrans étroits */
+
+@media (max-width: 1180px) {
+  .zone-apercu { display: none; }
+}
+
+@media (max-width: 820px) {
+  body.admin { flex-direction: column; }
+  .barre-laterale { width: 100%; min-height: 0; position: static; max-height: none; }
+  .liste-evenements { max-height: 30vh; }
+}
