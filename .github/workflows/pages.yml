@@ -2,7 +2,7 @@ name: Publier sur GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/wedding-guest-app-1ktb5u]
   workflow_dispatch:
 
 permissions:
@@ -23,6 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+        with:
+          # Active GitHub Pages automatiquement si ce n'est pas déjà fait
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
