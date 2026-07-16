@@ -59,9 +59,7 @@
 
 .editeur-bouton-principal:hover { background: var(--accent-fonce); border-color: var(--accent-fonce); }
 
-@media (prefers-color-scheme: dark) {
-  .editeur-bouton-principal { color: #201e1b; }
-}
+[data-mode="sombre"] .editeur-bouton-principal { color: #201e1b; }
 
 .editeur-bouton-secondaire { color: var(--accent-fonce); }
 

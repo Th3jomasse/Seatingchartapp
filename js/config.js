@@ -34,6 +34,32 @@ const CONFIG = {
   },
 
   // --------------------------------------------------------------------------
+  // Apparence — personnalisez le look de VOTRE événement
+  // --------------------------------------------------------------------------
+  theme: {
+    // Mode d'affichage : "clair" (recommandé — look faire-part ivoire/doré),
+    // "sombre", ou "auto" (suit le réglage du téléphone de l'invité)
+    mode: "clair",
+
+    // Logo de l'événement ou de l'entreprise (chemin ou URL d'une image,
+    // ex. "icons/logo.png"). Laisser vide "" : un monogramme élégant est
+    // généré automatiquement à partir du titre.
+    logo: "",
+
+    // Couleurs personnalisées (codes hex, ex. "#7a8ba8").
+    // Laisser "" pour garder la palette par défaut (ivoire, or doux, sauge).
+    couleurs: {
+      accent: "",       // boutons et icônes (or doux par défaut)
+      accentFonce: "",  // titres dorés, liens, variante foncée de l'accent
+      surlignage: "",   // table trouvée sur le plan, filets décoratifs
+      sauge: "",        // contours des tables du plan, confirmations
+      fond: "",         // fond de la page
+      carte: "",        // fond des cartes
+      encre: "",        // couleur du texte principal
+    },
+  },
+
+  // --------------------------------------------------------------------------
   // Pages activées (mettre false pour cacher une page)
   // --------------------------------------------------------------------------
   pages: {

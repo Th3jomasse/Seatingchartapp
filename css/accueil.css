@@ -37,6 +37,12 @@
   color: var(--accent-fonce);
 }
 
+.logo-accueil {
+  max-height: 110px;
+  max-width: 70%;
+  display: block;
+}
+
 .hero-ornement {
   color: var(--surlignage);
   font-size: 1.2rem;

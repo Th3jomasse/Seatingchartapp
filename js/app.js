@@ -14,6 +14,15 @@
   document.title = CONFIG.event.titre + " — Trouvez votre place";
   document.getElementById("entete-titre").textContent = CONFIG.event.titre;
 
+  // Logo dans l'en-tête (si défini dans CONFIG.theme.logo)
+  if (CONFIG.theme && CONFIG.theme.logo) {
+    const logo = document.createElement("img");
+    logo.src = CONFIG.theme.logo;
+    logo.alt = "";
+    logo.className = "entete-logo";
+    document.querySelector(".entete").insertBefore(logo, document.getElementById("entete-titre"));
+  }
+
   const PAGES = window.PAGES_MODULES
     .filter(function (p) { return p.active; })
     .sort(function (a, b) { return a.ordre - b.ordre; });

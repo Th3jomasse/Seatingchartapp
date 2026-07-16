@@ -34,6 +34,36 @@
     });
   });
 
+  // ----------------------------------------------------------------------
+  // Applique le thème défini dans CONFIG.theme : mode clair/sombre et
+  // couleurs personnalisées (remplacent les variables CSS par défaut).
+  // ----------------------------------------------------------------------
+  (function appliquerTheme() {
+    const theme = CONFIG.theme || {};
+    const racine = document.documentElement;
+
+    const mode = theme.mode || "clair";
+    const prefereSombre = window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (mode === "sombre" || (mode === "auto" && prefereSombre)) {
+      racine.setAttribute("data-mode", "sombre");
+    }
+
+    const correspondance = {
+      accent: "--accent",
+      accentFonce: "--accent-fonce",
+      surlignage: "--surlignage",
+      sauge: "--sauge",
+      fond: "--fond",
+      carte: "--carte",
+      encre: "--encre",
+    };
+    const couleurs = theme.couleurs || {};
+    Object.keys(correspondance).forEach(function (cle) {
+      if (couleurs[cle]) racine.style.setProperty(correspondance[cle], couleurs[cle]);
+    });
+  })();
+
   window.AppUtils = {
     normaliser: normaliser,
     el: el,

@@ -25,25 +25,25 @@
   --police-texte: "Jost", "Segoe UI", sans-serif;
 }
 
-/* Mode sombre automatique (selon le réglage du téléphone) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fond: #201e1b;
-    --carte: #2a2723;
-    --encre: #e8e3d9;
-    --encre-douce: #a39c8e;
-    --accent: #b9a468;
-    --accent-fonce: #cdbb85;
-    --sauge: #8ba087;
-    --ligne: #3a362f;
-    --surlignage: #c9a84c;
-    --survol: #35312a;
-    --repere-fond: #35312a;
-    --table-fond: #2f2b26;
-    --entete-fond: rgba(32, 30, 27, 0.92);
-    --nav-fond: rgba(42, 39, 35, 0.95);
-    --ombre: 0 2px 12px rgba(0, 0, 0, 0.35);
-  }
+/* Mode sombre — appliqué UNIQUEMENT si CONFIG.theme.mode le demande
+   ("sombre", ou "auto" avec un téléphone réglé en sombre). Par défaut
+   l'app reste toujours claire (look faire-part). */
+:root[data-mode="sombre"] {
+  --fond: #201e1b;
+  --carte: #2a2723;
+  --encre: #e8e3d9;
+  --encre-douce: #a39c8e;
+  --accent: #b9a468;
+  --accent-fonce: #cdbb85;
+  --sauge: #8ba087;
+  --ligne: #3a362f;
+  --surlignage: #c9a84c;
+  --survol: #35312a;
+  --repere-fond: #35312a;
+  --table-fond: #2f2b26;
+  --entete-fond: rgba(32, 30, 27, 0.92);
+  --nav-fond: rgba(42, 39, 35, 0.95);
+  --ombre: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,11 +66,21 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
   background: var(--entete-fond);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--ligne);
   padding: 0.7rem 1rem;
   text-align: center;
+}
+
+.entete-logo {
+  height: 1.8rem;
+  width: auto;
+  display: block;
 }
 
 .entete-titre {
@@ -144,10 +154,8 @@ body {
 .bouton-principal:hover { background: var(--accent-fonce); color: #fff; }
 .bouton-principal:active { transform: scale(0.97); }
 
-@media (prefers-color-scheme: dark) {
-  .bouton-principal { color: #201e1b; }
-  .bouton-principal:hover { color: #201e1b; }
-}
+[data-mode="sombre"] .bouton-principal,
+[data-mode="sombre"] .bouton-principal:hover { color: #201e1b; }
 
 /* -------------------------------------------------------- Navigation du bas */
 

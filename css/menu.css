@@ -59,9 +59,7 @@
   color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  .menu-puce-actif { color: #201e1b; }
-}
+[data-mode="sombre"] .menu-puce-actif { color: #201e1b; }
 
 .menu-compteur {
   text-align: center;

@@ -123,7 +123,16 @@
     const hero = el("section", "hero");
 
     const initiales = extraireInitiales(CONFIG.event.titre);
-    if (initiales) {
+    const logoConfig = CONFIG.theme && CONFIG.theme.logo;
+    if (logoConfig) {
+      const zoneLogo = el("div", "monogramme anim-entree anim-1");
+      const img = document.createElement("img");
+      img.src = logoConfig;
+      img.alt = CONFIG.event.titre;
+      img.className = "logo-accueil";
+      zoneLogo.appendChild(img);
+      hero.appendChild(zoneLogo);
+    } else if (initiales) {
       const monogramme = el("div", "monogramme anim-entree anim-1");
       const cercle = el("div", "monogramme-cercle");
       cercle.appendChild(el("span", "monogramme-lettres", initiales));
