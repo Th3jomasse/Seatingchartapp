@@ -1,1 +1,275 @@
-/* Onglet — rempli par l’agent correspondant */
+/* ============================================================================
+   Onglet « Apparence »
+   Thèmes prêts à l'emploi, mode clair/sombre/auto, couleurs fines, polices
+   et logo. Réutilise les variables --a-* et classes a-carte/a-champ/a-bouton
+   du noyau (css/admin.css).
+   ============================================================================ */
+
+/* ------------------------------------------------------- Thèmes prêts à l'emploi */
+
+.apparence-grille-presets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.8rem;
+}
+
+.apparence-preset {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0 1rem 1rem;
+  background: var(--a-blanc);
+  border: 1.5px solid var(--a-ligne);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.apparence-preset-bandeau {
+  display: block;
+  width: calc(100% + 2rem);
+  height: 7px;
+  margin: 0 -1rem 0.75rem;
+}
+
+.apparence-preset:hover {
+  border-color: var(--a-or);
+  box-shadow: var(--a-ombre);
+  transform: translateY(-1px);
+}
+
+.apparence-preset.actif {
+  border-color: var(--a-or);
+  box-shadow: 0 0 0 3px rgba(160, 138, 82, 0.22);
+}
+
+.apparence-preset-sombre {
+  background: var(--a-encre-2);
+  border-color: var(--a-encre-3);
+}
+
+.apparence-preset-sombre:hover { border-color: var(--a-or); }
+
+.apparence-preset-insigne {
+  position: absolute;
+  top: 0.95rem;
+  right: 0.7rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--a-or-fonce);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.apparence-preset-sombre .apparence-preset-insigne { color: #e9dfc8; }
+
+.apparence-preset.actif .apparence-preset-insigne { opacity: 1; }
+
+.apparence-preset-nom {
+  font-family: var(--a-titre);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--a-texte);
+}
+
+.apparence-preset-sombre .apparence-preset-nom,
+.apparence-preset-sombre .apparence-preset-polices { color: var(--a-texte-inverse); }
+
+.apparence-pastilles {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.apparence-pastille {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+.apparence-preset-polices {
+  font-size: 0.78rem;
+  color: var(--a-texte-doux);
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------- Mode clair/sombre */
+
+.apparence-segmente {
+  display: inline-flex;
+  border: 1px solid var(--a-ligne);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+
+.apparence-segmente button {
+  padding: 0.5rem 1.2rem;
+  background: var(--a-blanc);
+  border: none;
+  border-left: 1px solid var(--a-ligne);
+  font-family: var(--a-texte-police);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--a-texte-doux);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.apparence-segmente button:first-child { border-left: none; }
+
+.apparence-segmente button:hover { color: var(--a-texte); }
+
+.apparence-segmente button.actif {
+  background: var(--a-or);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------------ Couleurs */
+
+.apparence-ligne-couleur {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--a-ligne);
+}
+
+.apparence-ligne-couleur:last-child { border-bottom: none; }
+
+.apparence-libelle-couleur {
+  flex: 1;
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--a-texte);
+  min-width: 0;
+}
+
+.apparence-pastille-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.apparence-pastille-input::-webkit-color-swatch-wrapper { padding: 2px; }
+.apparence-pastille-input::-webkit-color-swatch { border: none; border-radius: 5px; }
+.apparence-pastille-input::-moz-color-swatch { border: none; border-radius: 5px; }
+
+.apparence-hex-input {
+  width: 92px;
+  flex-shrink: 0;
+  padding: 0.4rem 0.55rem;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.85rem;
+  text-transform: lowercase;
+  color: var(--a-texte);
+  background: var(--a-blanc);
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  outline: none;
+}
+
+.apparence-hex-input:focus { border-color: var(--a-or); }
+
+.apparence-bouton-mini {
+  flex-shrink: 0;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+/* -------------------------------------------------------------------------- Polices */
+
+.apparence-apercu-polices {
+  margin-top: 0.9rem;
+  padding: 1.1rem 1rem;
+  text-align: center;
+  background: var(--a-ivoire);
+  border: 1px dashed var(--a-ligne);
+  border-radius: 10px;
+  color: var(--a-texte);
+}
+
+.apparence-apercu-texte {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.apparence-apercu-titre {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--a-or-fonce);
+}
+
+/* ------------------------------------------------------------------------------ Logo */
+
+.apparence-logo-ligne {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.apparence-logo-vignette {
+  flex-shrink: 0;
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  background: var(--a-blanc);
+  border: 1px solid var(--a-ligne);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.apparence-logo-vignette img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.apparence-logo-vide {
+  font-size: 0.68rem;
+  color: var(--a-texte-doux);
+  text-align: center;
+  line-height: 1.25;
+}
+
+.apparence-logo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.apparence-bouton-fichier {
+  text-align: center;
+  cursor: pointer;
+}
+
+.apparence-champ-fichier-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.apparence-champ-url { margin-top: 0.6rem; }
+
+.apparence-note-alerte { color: var(--a-rouge); }

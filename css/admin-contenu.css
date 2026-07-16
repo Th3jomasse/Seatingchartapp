@@ -1,1 +1,153 @@
-/* Onglet — rempli par l’agent correspondant */
+/* ============================================================================
+   Onglet « Contenu » — styles spécifiques
+   Réutilise au maximum les variables et classes .a-* définies dans
+   css/admin.css (carte, champ, rangée, boutons). Ce fichier ne couvre que les
+   éléments propres à cet onglet : cases à cocher des pages, blocs de section
+   du menu, rangées de plats/horaire et liste de paragraphes.
+   ============================================================================ */
+
+/* Pages affichées : liste de cases à cocher */
+
+.contenu-cases {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.contenu-case-ligne {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--a-texte);
+  cursor: pointer;
+}
+
+.contenu-case-ligne input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--a-or);
+  cursor: pointer;
+}
+
+/* Menu : bloc d'une section (titre + plats) */
+
+.contenu-section-bloc {
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  padding: 0.8rem 0.9rem;
+  margin-bottom: 0.8rem;
+  background: var(--a-ivoire);
+}
+
+.contenu-section-entete {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.contenu-plat-rangee {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* À propos : liste de paragraphes */
+
+.contenu-paragraphe-bloc {
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--a-ligne);
+}
+
+.contenu-paragraphe-bloc:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0;
+}
+
+.contenu-paragraphe-bloc textarea {
+  display: block;
+  width: 100%;
+  min-height: 4.5rem;
+  margin-bottom: 0.4rem;
+  padding: 0.55rem 0.75rem;
+  font-family: var(--a-texte-police);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--a-texte);
+  background: var(--a-blanc);
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  outline: none;
+  resize: vertical;
+}
+
+.contenu-paragraphe-bloc textarea:focus {
+  border-color: var(--a-or);
+}
+
+/* Horaire : rangées heure + activité + réordonner + supprimer */
+
+.contenu-horaire-rangee {
+  display: grid;
+  grid-template-columns: 120px 1fr auto auto auto;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.contenu-bouton-icone {
+  background: none;
+  border: 1px solid var(--a-ligne);
+  border-radius: 6px;
+  color: var(--a-texte-doux);
+  font-family: var(--a-texte-police);
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.4rem 0.55rem;
+  cursor: pointer;
+}
+
+.contenu-bouton-icone:hover {
+  color: var(--a-texte);
+  border-color: var(--a-or);
+}
+
+/* Champs bruts hors .a-champ (titre de section, rangées de plats/horaire) :
+   même habillage que les champs de .a-champ, pour rester cohérent. */
+
+.contenu-section-titre,
+.contenu-plat-rangee input,
+.contenu-horaire-rangee input {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  font-family: var(--a-texte-police);
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--a-texte);
+  background: var(--a-blanc);
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  outline: none;
+}
+
+.contenu-section-titre {
+  font-weight: 500;
+}
+
+.contenu-section-titre:focus,
+.contenu-plat-rangee input:focus,
+.contenu-horaire-rangee input:focus {
+  border-color: var(--a-or);
+}
+
+@media (max-width: 640px) {
+  .contenu-plat-rangee,
+  .contenu-horaire-rangee {
+    grid-template-columns: 1fr;
+  }
+}

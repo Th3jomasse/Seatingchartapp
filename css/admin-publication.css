@@ -1,1 +1,334 @@
-/* Onglet — rempli par l’agent correspondant */
+/* ============================================================================
+   Fichier CSS partagé pour deux onglets (voir règle « fichiers modifiables » du
+   tableau de bord) :
+     1. Onglet « Codes QR »       (js/admin/onglet-qr.js)
+     2. Onglet « Publication »    (js/admin/onglet-publication.js)
+   Réutilise au maximum les variables et classes .a-* de css/admin.css (carte,
+   champ, rangée, boutons, note). Ce fichier ne couvre que les éléments propres
+   à ces deux onglets.
+   ============================================================================ */
+
+/* ==========================================================================
+   1. Onglet « Codes QR »
+   ========================================================================== */
+
+.qr-avertissement {
+  background: #fbf3e2;
+  border-color: #e6cf9a;
+  color: #7a5b1e;
+}
+
+.qr-avertissement p { margin: 0; line-height: 1.5; }
+.qr-avertissement strong { color: inherit; }
+
+.qr-rangee-url {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.qr-url-texte {
+  flex: 1;
+  min-width: 0;
+  background: var(--a-ivoire);
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.88rem;
+  color: var(--a-texte);
+  overflow-wrap: anywhere;
+}
+
+.qr-zone-site {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.qr-canvas {
+  display: block;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: var(--a-ombre);
+}
+
+.qr-canvas-site {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+
+.qr-colonne-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.qr-entete-invites {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.qr-grille-invites {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.9rem;
+}
+
+.qr-carte-invite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.9rem 0.6rem;
+  border: 1px solid var(--a-ligne);
+  border-radius: var(--a-rayon);
+  background: var(--a-ivoire);
+}
+
+.qr-canvas-invite {
+  max-width: 130px;
+  width: 100%;
+  height: auto;
+}
+
+.qr-invite-nom {
+  font-family: var(--a-titre);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--a-texte);
+}
+
+.qr-carton-legende {
+  font-size: 0.72rem;
+  color: var(--a-texte-doux);
+  text-align: center;
+}
+
+.qr-invite-telecharger {
+  font-size: 0.78rem;
+  padding: 0.35rem 0.8rem;
+}
+
+/* ---------------------------------------------------------------- Impression
+   Déclenchée par onglet-qr.js : ajoute la classe .impression-qr sur <body>
+   au clic sur « Imprimer les cartons », la retire ensuite. On masque tout le
+   reste du tableau de bord (barre latérale, en-tête, aperçu, autres cartes de
+   l'onglet) pour ne laisser que la grille de cartons invités. */
+
+@media print {
+  body.impression-qr .barre-laterale,
+  body.impression-qr .entete-admin,
+  body.impression-qr .zone-apercu,
+  body.impression-qr .conteneur-onglet > *:not(.qr-section-invites),
+  body.impression-qr .qr-section-invites > *:not(.qr-grille-invites),
+  body.impression-qr .qr-carte-invite .qr-invite-telecharger {
+    display: none !important;
+  }
+
+  body.impression-qr,
+  body.impression-qr .zone-principale,
+  body.impression-qr .zone-travail,
+  body.impression-qr .conteneur-onglet,
+  body.impression-qr .qr-section-invites {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  body.impression-qr .qr-grille-invites {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 33vh;
+    gap: 0;
+  }
+
+  body.impression-qr .qr-carte-invite {
+    border: 1px dashed #ccc;
+    border-radius: 0;
+    background: #fff;
+    justify-content: center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  body.impression-qr .qr-carte-invite:nth-child(6n) {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  body.impression-qr .qr-canvas-invite {
+    max-width: 45mm;
+  }
+
+  body.impression-qr .qr-invite-nom {
+    font-size: 1.15rem;
+  }
+
+  body.impression-qr .qr-carton-legende {
+    font-size: 0.7rem;
+    color: #555;
+  }
+}
+
+/* ==========================================================================
+   2. Onglet « Publication »
+   ========================================================================== */
+
+.pub-case-ligne {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  color: var(--a-texte);
+  cursor: pointer;
+  margin-bottom: 0.9rem;
+}
+
+.pub-case-ligne input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--a-or);
+  cursor: pointer;
+}
+
+.pub-aide {
+  margin-bottom: 1rem;
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  background: var(--a-ivoire);
+}
+
+.pub-aide summary {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--a-or-fonce);
+}
+
+.pub-aide-etapes {
+  margin: 0.6rem 0 0.2rem 1.1rem;
+  font-size: 0.85rem;
+  color: var(--a-texte-doux);
+  line-height: 1.6;
+}
+
+.pub-confirmation {
+  margin-left: 0.8rem;
+  color: var(--a-vert);
+}
+
+.pub-entete-publier {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+
+.pub-statut {
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.9rem;
+  display: none;
+}
+
+.pub-statut:empty { display: none; }
+
+.pub-statut p { margin: 0 0 0.3rem; }
+.pub-statut a { color: inherit; font-weight: 500; }
+
+.pub-statut-info {
+  display: block;
+  background: #eef1f6;
+  color: #3a4a63;
+}
+
+.pub-statut-succes {
+  display: block;
+  background: #e8f0e9;
+  color: var(--a-vert);
+}
+
+.pub-statut-erreur {
+  display: block;
+  background: #f8e6e3;
+  color: var(--a-rouge);
+}
+
+.pub-journal {
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--a-texte-doux);
+  max-height: 140px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.pub-journal:empty { display: none; margin-bottom: 0; }
+
+.pub-journal li {
+  padding: 0.2rem 0;
+  border-bottom: 1px dashed var(--a-ligne);
+}
+
+.pub-journal li:last-child { border-bottom: none; }
+
+.pub-liste-evenements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pub-rangee-evenement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  background: var(--a-ivoire);
+}
+
+.pub-rangee-infos {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.pub-rangee-titre {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pub-pastille {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: #f7ecd8;
+  color: #93712c;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .pub-rangee-evenement {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

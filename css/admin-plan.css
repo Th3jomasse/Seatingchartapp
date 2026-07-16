@@ -1,1 +1,209 @@
-/* Onglet — rempli par l’agent correspondant */
+/* ============================================================================
+   Onglet — Plan de salle
+   Grand plan SVG + panneau latéral d'édition. Réutilise les variables de
+   css/admin.css (--a-*) et les classes communes (.a-carte, .a-champ,
+   .a-bouton, .a-bouton-contour, .a-bouton-danger).
+   ============================================================================ */
+
+.aplan-mise-en-page {
+  display: flex;
+  gap: 1.4rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.aplan-zone-plan {
+  flex: 0 0 62%;
+  min-width: 0;
+}
+
+.aplan-panneau {
+  flex: 1 1 auto;
+  min-width: 260px;
+  position: sticky;
+  top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .aplan-mise-en-page { flex-direction: column; }
+  .aplan-zone-plan,
+  .aplan-panneau { flex: 1 1 auto; width: 100%; }
+  .aplan-panneau { position: static; }
+}
+
+/* ---------------------------------------------------------- Barre d'actions */
+
+.aplan-barre-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+/* -------------------------------------------------------------- Compteurs */
+
+.aplan-compteurs {
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--a-texte-doux);
+  margin-bottom: 0.7rem;
+}
+
+.aplan-compteurs strong {
+  color: var(--a-or-fonce);
+  font-family: var(--a-titre);
+  font-size: 1.15rem;
+  margin: 0 0.2rem 0 0;
+}
+
+/* -------------------------------------------------------------------- Plan */
+
+.aplan-plan-carte {
+  padding: 0.75rem;
+}
+
+.aplan-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none; /* le glisser des tables/repères est géré nous-mêmes */
+  --aplan-table-fill: #ffffff;
+  --aplan-table-stroke: var(--a-or);
+  --aplan-repere-fill: #ece6d5;
+  --aplan-repere-stroke: var(--a-ligne);
+  --aplan-selection-fill: #f3e6c2;
+  --aplan-selection-stroke: var(--a-or-fonce);
+}
+
+.aplan-repere { cursor: grab; }
+.aplan-table { cursor: grab; }
+
+.aplan-repere-forme {
+  fill: var(--aplan-repere-fill);
+  stroke: var(--aplan-repere-stroke);
+  stroke-width: 0.4;
+}
+
+.aplan-repere-texte {
+  font-family: var(--a-texte-police);
+  font-size: 2.6px;
+  fill: var(--a-texte-doux);
+  text-anchor: middle;
+  dominant-baseline: central;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.aplan-table-forme {
+  fill: var(--aplan-table-fill);
+  stroke: var(--aplan-table-stroke);
+  stroke-width: 0.7;
+  transition: fill 0.15s ease, stroke 0.15s ease;
+}
+
+.aplan-table:hover .aplan-table-forme { fill: #faf6ea; }
+
+.aplan-table-texte {
+  font-family: var(--a-texte-police);
+  font-size: 4px;
+  font-weight: 500;
+  fill: var(--a-texte);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.aplan-chaise {
+  fill: none;
+  stroke: var(--a-ligne);
+  stroke-width: 0.5;
+}
+
+/* Élément sélectionné (table ou repère) */
+.aplan-repere-forme.aplan-selectionne,
+.aplan-table-forme.aplan-selectionne {
+  fill: var(--aplan-selection-fill);
+  stroke: var(--aplan-selection-stroke);
+  stroke-width: 1;
+}
+
+/* Élément en cours de glisser */
+.aplan-repere.aplan-glisse,
+.aplan-table.aplan-glisse {
+  cursor: grabbing;
+  opacity: 0.85;
+}
+
+.aplan-repere.aplan-glisse .aplan-repere-forme,
+.aplan-table.aplan-glisse .aplan-table-forme {
+  stroke-width: 1.1;
+}
+
+/* ------------------------------------------------------------------ Panneau */
+
+.aplan-panneau-vide {
+  color: var(--a-texte-doux);
+  font-size: 0.92rem;
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.aplan-ligne-double {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.aplan-ligne-double .a-champ { flex: 1; }
+
+.aplan-panneau-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--a-ligne);
+}
+
+/* Champs numériques : même look que les autres champs (.a-champ ne cible pas
+   input[type="number"] dans css/admin.css). */
+.a-champ input[type="number"] {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  font-family: var(--a-texte-police);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--a-texte);
+  background: var(--a-blanc);
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  outline: none;
+}
+
+.a-champ input[type="number"]:focus { border-color: var(--a-or); }
+
+/* --------------------------------------------------------------- Import */
+
+.aplan-import {
+  margin-top: 0;
+}
+
+.aplan-import-texte {
+  width: 100%;
+  min-height: 130px;
+  font-family: var(--a-texte-police);
+  font-size: 0.9rem;
+  color: var(--a-texte);
+  background: var(--a-ivoire);
+  border: 1px solid var(--a-ligne);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  resize: vertical;
+  margin-bottom: 0.7rem;
+}
+
+.aplan-import-texte:focus { border-color: var(--a-or); outline: none; }
+
+.aplan-import-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}

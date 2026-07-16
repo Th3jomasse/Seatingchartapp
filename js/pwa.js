@@ -16,12 +16,20 @@
     );
   }
 
-  if ("serviceWorker" in navigator && contexteAutorise()) {
-    window.addEventListener("load", function () {
-      // Chemin relatif : l'app est servie depuis un sous-chemin GitHub Pages.
-      navigator.serviceWorker.register("sw.js").catch(function (erreur) {
-        console.warn("PWA : échec de l'enregistrement du service worker.", erreur);
-      });
+  function enregistrer() {
+    // Chemin relatif : l'app est servie depuis un sous-chemin GitHub Pages.
+    navigator.serviceWorker.register("sw.js").catch(function (erreur) {
+      console.warn("PWA : échec de l'enregistrement du service worker.", erreur);
     });
+  }
+
+  if ("serviceWorker" in navigator && contexteAutorise()) {
+    // Ce script est injecté par le chargeur APRÈS le chargement de la page :
+    // l'événement « load » est souvent déjà passé, il faut donc vérifier.
+    if (document.readyState === "complete") {
+      enregistrer();
+    } else {
+      window.addEventListener("load", enregistrer);
+    }
   }
 })();
